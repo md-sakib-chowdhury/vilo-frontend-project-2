@@ -2,10 +2,10 @@
    AdvocateGo Dashboard — Custom Stylesheet
    Author  : Md. Sakib Chowdhury
    Stack   : Bootstrap 5 + Custom CSS (No Tailwind / No jQuery)
-   Version : 1.0.0
+   Version : 2.0.0  — Full Responsive Fix
    ============================================================ */
 
-/* ── 1. CSS CUSTOM PROPERTIES (Design Tokens) ────────────── */
+/* ── 1. CSS CUSTOM PROPERTIES ────────────────────────────── */
 :root {
     --primary: #1DB954;
     --primary-dark: #17a349;
@@ -15,7 +15,6 @@
     --sidebar-width: 230px;
     --topbar-height: 64px;
 
-    /* Light Mode */
     --bg-body: #f4f6f9;
     --bg-card: #ffffff;
     --bg-sidebar: #ffffff;
@@ -29,7 +28,7 @@
     --border-color: #e8ecf0;
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, .05);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, .08);
-    --shadow-lg: 0 8px 28px rgba(0, 0, 0, .12);
+    --shadow-lg: 0 8px 28px rgba(0, 0, 0, .18);
 
     --radius-sm: 8px;
     --radius-md: 12px;
@@ -38,7 +37,6 @@
 
     --transition: all .25s ease;
 
-    /* Badge tokens */
     --badge-paid-bg: #e8f8ef;
     --badge-paid-text: #1DB954;
     --badge-unpaid-bg: #fff3e0;
@@ -107,7 +105,6 @@ img {
     display: block;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
@@ -126,14 +123,33 @@ img {
     background: var(--text-secondary);
 }
 
-/* ── 3. LAYOUT SHELL ─────────────────────────────────────── */
+/* ── 3. BOOTSTRAP COLUMN HELPER ──────────────────────────── */
+/* 5-column layout for stat cards on large screens */
+.col-lg-2half {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+@media (max-width: 1279px) {
+    .col-lg-2half {
+        width: 33.3333%;
+    }
+}
+
+@media (max-width: 767px) {
+    .col-lg-2half {
+        width: 50%;
+    }
+}
+
+/* ── 4. LAYOUT SHELL ─────────────────────────────────────── */
 .app-wrapper {
     display: flex;
     min-height: 100vh;
     position: relative;
 }
 
-/* ── 4. SIDEBAR ──────────────────────────────────────────── */
+/* ── 5. SIDEBAR ──────────────────────────────────────────── */
 .sidebar {
     position: fixed;
     top: 0;
@@ -146,7 +162,7 @@ img {
     flex-direction: column;
     z-index: 1050;
     overflow-y: auto;
-    transition: transform .3s ease, background .3s;
+    transition: transform .3s ease, background .3s, width .3s;
 }
 
 /* Logo */
@@ -191,7 +207,6 @@ img {
     cursor: pointer;
     transition: var(--transition);
     position: relative;
-    border-radius: 0;
 }
 
 .sidebar__nav-item:hover {
@@ -224,7 +239,6 @@ img {
     font-size: 11px;
 }
 
-/* Sidebar section title */
 .sidebar__section-title {
     font-size: 10px;
     font-weight: 700;
@@ -279,7 +293,6 @@ img {
 .activity-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 8px;
     padding: 7px 0;
     border-bottom: 1px solid var(--border-color);
@@ -354,7 +367,7 @@ img {
     margin-left: auto;
 }
 
-/* ── 5. TOPBAR ───────────────────────────────────────────── */
+/* ── 6. TOPBAR ───────────────────────────────────────────── */
 .topbar {
     position: fixed;
     top: 0;
@@ -382,7 +395,6 @@ img {
     line-height: 1;
 }
 
-/* Search */
 .topbar__search {
     flex: 1;
     max-width: 360px;
@@ -420,7 +432,6 @@ img {
     color: var(--text-secondary);
 }
 
-/* Topbar actions */
 .topbar__actions {
     display: flex;
     align-items: center;
@@ -460,7 +471,6 @@ img {
     border: 1.5px solid var(--bg-topbar);
 }
 
-/* User chip */
 .topbar__user {
     display: flex;
     align-items: center;
@@ -500,14 +510,14 @@ img {
     color: var(--text-secondary);
 }
 
-/* ── 6. MAIN CONTENT ─────────────────────────────────────── */
+/* ── 7. MAIN CONTENT ─────────────────────────────────────── */
 .main-content {
     margin-left: var(--sidebar-width);
     margin-top: var(--topbar-height);
     padding: 26px 24px;
     min-height: calc(100vh - var(--topbar-height));
-    width: 100%;
-    transition: margin-left .3s;
+    width: calc(100% - var(--sidebar-width));
+    transition: margin-left .3s, width .3s;
 }
 
 /* Page header */
@@ -527,7 +537,7 @@ img {
     color: var(--text-secondary);
 }
 
-/* ── 7. STAT CARDS ───────────────────────────────────────── */
+/* ── 8. STAT CARDS ───────────────────────────────────────── */
 .stat-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -596,7 +606,7 @@ img {
     color: #e53935;
 }
 
-/* ── 8. SECTION CARD ─────────────────────────────────────── */
+/* ── 9. SECTION CARD ─────────────────────────────────────── */
 .section-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -629,7 +639,7 @@ img {
     flex-wrap: wrap;
 }
 
-/* ── 9. BUTTONS ──────────────────────────────────────────── */
+/* ── 10. BUTTONS ─────────────────────────────────────────── */
 .btn-primary {
     background: var(--primary);
     color: #fff;
@@ -657,7 +667,7 @@ img {
 }
 
 .btn-outline {
-    background: transparent;
+    background: var(--bg-input);
     color: var(--text-secondary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
@@ -671,7 +681,6 @@ img {
     transition: var(--transition);
     font-family: 'DM Sans', sans-serif;
     white-space: nowrap;
-    background: var(--bg-input);
 }
 
 .btn-outline:hover {
@@ -679,7 +688,7 @@ img {
     color: var(--primary);
 }
 
-/* ── 10. TASK LIST ───────────────────────────────────────── */
+/* ── 11. TASK LIST ───────────────────────────────────────── */
 .task-list {
     list-style: none;
 }
@@ -762,18 +771,12 @@ img {
     transition: width .5s ease;
 }
 
-/* ── 11. CALENDAR ────────────────────────────────────────── */
+/* ── 12. CALENDAR ────────────────────────────────────────── */
 .cal-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 14px;
-}
-
-.cal-header__title {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-primary);
 }
 
 .cal-week-select {
@@ -844,10 +847,6 @@ img {
 
 .week-day.is-active .week-day__num {
     color: #fff;
-}
-
-.week-day.is-active:hover {
-    opacity: .9;
 }
 
 .time-label {
@@ -923,9 +922,10 @@ img {
     color: var(--text-secondary);
 }
 
-/* ── 12. TABLES ──────────────────────────────────────────── */
+/* ── 13. TABLES ──────────────────────────────────────────── */
 .table-wrapper {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .data-table {
@@ -1006,7 +1006,7 @@ img {
     color: var(--badge-awaiting-text);
 }
 
-/* Table search input */
+/* Table search */
 .table-search {
     background: var(--bg-input);
     border: 1px solid var(--border-color);
@@ -1029,7 +1029,7 @@ img {
     color: var(--text-secondary);
 }
 
-/* ── 13. ACTIVE CASES ────────────────────────────────────── */
+/* ── 14. CASE CARDS ──────────────────────────────────────── */
 .case-card {
     border: 1px solid var(--border-color);
     border-radius: var(--radius-sm);
@@ -1120,7 +1120,7 @@ img {
     margin-left: 2px;
 }
 
-/* ── 14. FILTER SELECT ───────────────────────────────────── */
+/* ── 15. FILTER SELECT ───────────────────────────────────── */
 .filter-select {
     background: var(--bg-input);
     border: 1px solid var(--border-color);
@@ -1138,7 +1138,43 @@ img {
     border-color: var(--primary);
 }
 
-/* ── 15. SIDEBAR OVERLAY ─────────────────────────────────── */
+/* ── 16. REVENUE CHART ───────────────────────────────────── */
+.rev-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 80px;
+}
+
+.rev-bar-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    height: 100%;
+    justify-content: flex-end;
+}
+
+.rev-bar {
+    width: 100%;
+    background: var(--primary-light);
+    border-radius: 4px 4px 0 0;
+    transition: background .3s;
+    cursor: pointer;
+    min-height: 4px;
+}
+
+.rev-bar:hover {
+    background: var(--primary);
+}
+
+.rev-bar-wrap .rev-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+}
+
+/* ── 17. SIDEBAR OVERLAY ─────────────────────────────────── */
 .sidebar-overlay {
     display: none;
     position: fixed;
@@ -1152,15 +1188,14 @@ img {
     display: block;
 }
 
-/* ── 16. RESPONSIVE ──────────────────────────────────────── */
-
-/* ┌─────────────────────────────────────────────────────────┐
-   │  BREAKPOINT MAP                                         │
-   │  Desktop    : 1440px+                                   │
-   │  Laptop 14" : 1280px – 1439px  (most common laptop)    │
-   │  Tablet     : 768px  – 1279px                          │
-   │  Mobile     : < 768px                                   │
-   └─────────────────────────────────────────────────────────┘ */
+/* ════════════════════════════════════════════════════════════
+   18. RESPONSIVE BREAKPOINTS
+   ─────────────────────────────────────────────────────────
+   Desktop    : 1440px +
+   Laptop 14" : 1280px – 1439px  ← KEY FIX: sidebar ALWAYS visible
+   Tablet     :  768px – 1279px  ← sidebar visible, hamburger hidden
+   Mobile     :        <  768px  ← hamburger shows, sidebar slides in
+   ════════════════════════════════════════════════════════════ */
 
 /* ── DESKTOP (1440px+) ───────────────────────────────────── */
 @media (min-width: 1440px) {
@@ -1207,8 +1242,9 @@ img {
         --topbar-height: 60px;
     }
 
+    /* Sidebar STAYS VISIBLE — no transform change here */
     .main-content {
-        padding: 22px 22px;
+        padding: 22px;
     }
 
     .stat-card {
@@ -1225,33 +1261,17 @@ img {
         font-size: 20px;
     }
 
-    .stat-card__label {
-        font-size: 11.5px;
-    }
-
     .section-card {
         padding: 18px;
-    }
-
-    .section-card__title {
-        font-size: 14px;
     }
 
     .page-header__title {
         font-size: 20px;
     }
 
-    .page-header__subtitle {
-        font-size: 12px;
-    }
-
     .sidebar__nav-item {
         font-size: 13px;
         padding: 8px 16px;
-    }
-
-    .sidebar__logo-wordmark {
-        font-size: 18px;
     }
 
     .topbar__search {
@@ -1261,20 +1281,18 @@ img {
     .data-table {
         font-size: 12px;
     }
-
-    .cal-event {
-        padding: 7px 10px;
-    }
-
-    .week-day__num {
-        font-size: 14px;
-    }
 }
 
-/* ── TABLET (768px – 1279px) ─────────────────────────────── */
-@media (max-width: 1279px) and (min-width: 768px) {
+/* ── TABLET — sidebar still visible, slightly narrower ──── */
+@media (min-width: 768px) and (max-width: 1279px) {
     :root {
         --sidebar-width: 200px;
+        --topbar-height: 58px;
+    }
+
+    /* Sidebar STAYS VISIBLE — hamburger hidden */
+    .topbar__hamburger {
+        display: none !important;
     }
 
     .stat-card__value {
@@ -1296,7 +1314,7 @@ img {
     }
 
     .topbar__search {
-        max-width: 260px;
+        max-width: 240px;
     }
 
     .page-header__title {
@@ -1304,10 +1322,13 @@ img {
     }
 }
 
-/* Tablet — sidebar hidden, hamburger shown */
-@media (max-width: 1024px) {
+/* ── MOBILE (< 768px) — sidebar slides in via hamburger ─── */
+@media (max-width: 767px) {
+
+    /* Sidebar hidden by default on mobile */
     .sidebar {
         transform: translateX(-100%);
+        width: 260px;
     }
 
     .sidebar.is-open {
@@ -1315,12 +1336,11 @@ img {
         box-shadow: var(--shadow-lg);
     }
 
+    /* Topbar fills full width */
     .topbar {
-        left: 0;
-    }
-
-    .main-content {
-        margin-left: 0;
+        left: 0 !important;
+        padding: 0 12px;
+        gap: 8px;
     }
 
     .topbar__hamburger {
@@ -1328,21 +1348,16 @@ img {
         align-items: center;
         justify-content: center;
     }
-}
 
-/* ── MOBILE (< 768px) ────────────────────────────────────── */
-@media (max-width: 767px) {
+    /* Main content fills full width */
     .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
         padding: 14px;
     }
 
-    .topbar {
-        padding: 0 12px;
-        gap: 8px;
-    }
-
     .topbar__search {
-        max-width: 180px;
+        max-width: 200px;
     }
 
     .stat-card {
@@ -1350,7 +1365,7 @@ img {
     }
 
     .stat-card__value {
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .stat-card__icon {
@@ -1408,10 +1423,6 @@ img {
         padding: 7px 10px;
     }
 
-    .section-card__actions {
-        gap: 6px;
-    }
-
     .btn-primary,
     .btn-outline {
         padding: 6px 11px;
@@ -1420,15 +1431,10 @@ img {
 
     .table-search {
         width: 100%;
-        max-width: 100%;
-    }
-
-    .filter-select {
-        font-size: 12px;
     }
 }
 
-/* ── SMALL MOBILE (< 480px) ─────────────────────────────── */
+/* ── SMALL MOBILE (< 480px) ──────────────────────────────── */
 @media (max-width: 480px) {
     .topbar__search {
         max-width: 130px;
@@ -1443,7 +1449,7 @@ img {
     }
 
     .stat-card__value {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .stat-card__icon {
@@ -1460,10 +1466,7 @@ img {
     .section-card__actions {
         width: 100%;
         justify-content: flex-start;
-    }
-
-    .table-search {
-        width: 100%;
+        flex-wrap: wrap;
     }
 
     .page-header__title {
