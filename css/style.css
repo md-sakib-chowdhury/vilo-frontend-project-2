@@ -57,16 +57,11 @@ body {
 
 .sidebar {
     width: var(--sidebar-w);
-    min-height: 100vh;
     background: var(--white);
     border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
 }
 
 .sidebar-logo {
@@ -306,9 +301,6 @@ body {
     align-items: center;
     gap: 16px;
     padding: 0 20px;
-    position: sticky;
-    top: 0;
-    z-index: 50;
 }
 
 .hamburger {
@@ -1053,6 +1045,7 @@ body {
         z-index: 100;
         transition: left .25s ease;
         height: 100vh;
+        overflow-y: auto;
     }
 
     .sidebar.is-open {
