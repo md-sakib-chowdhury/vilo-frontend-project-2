@@ -7,20 +7,15 @@
     <meta name="description" content="AdvocateGo – Legal Practice Management Dashboard" />
     <title>AdvocateGo | Dashboard</title>
 
-    <!-- Bootstrap 5 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
-
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -28,715 +23,630 @@
 <body>
 
     <!-- ═══════════════════════════════════════════════════════
-       SIDEBAR OVERLAY  (mobile)
-  ════════════════════════════════════════════════════════ -->
-    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
-
+     SIDEBAR OVERLAY (mobile)
+════════════════════════════════════════════════════════ -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- ═══════════════════════════════════════════════════════
+     APP WRAPPER
+════════════════════════════════════════════════════════ -->
+    <div class="app-wrapper">
+
+        <!-- ─────────────────────────────────────────────────────
        SIDEBAR
-  ════════════════════════════════════════════════════════ -->
-    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+  ──────────────────────────────────────────────────────── -->
+        <aside class="sidebar" id="sidebar">
 
-        <!-- Logo -->
-        <div class="sidebar__logo">
-            <div class="sidebar__logo-wordmark">ADVOCATE<span>GO</span></div>
-            <div class="sidebar__logo-powered">Powered by WinWE</div>
-        </div>
-
-        <!-- Nav Items -->
-        <nav class="sidebar__nav">
-            <a href="#" class="sidebar__nav-item is-active" aria-current="page">
-                <i class="bi bi-house-door sidebar__nav-icon" aria-hidden="true"></i>
-                Dashboard
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-people sidebar__nav-icon" aria-hidden="true"></i>
-                Staff
-                <i class="bi bi-chevron-right sidebar__nav-arrow" aria-hidden="true"></i>
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-person sidebar__nav-icon" aria-hidden="true"></i>
-                Client
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-briefcase sidebar__nav-icon" aria-hidden="true"></i>
-                Advocate
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-folder sidebar__nav-icon" aria-hidden="true"></i>
-                Cases
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-check2-square sidebar__nav-icon" aria-hidden="true"></i>
-                To-Do
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-journal-text sidebar__nav-icon" aria-hidden="true"></i>
-                Case Diary / Cale
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-file-earmark-text sidebar__nav-icon" aria-hidden="true"></i>
-                Documents
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-receipt sidebar__nav-icon" aria-hidden="true"></i>
-                Bills / Invoices
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-list-ul sidebar__nav-icon" aria-hidden="true"></i>
-                Cause List
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-clock-history sidebar__nav-icon" aria-hidden="true"></i>
-                Timesheet
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-cash-stack sidebar__nav-icon" aria-hidden="true"></i>
-                Expense
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-wallet2 sidebar__nav-icon" aria-hidden="true"></i>
-                Fee Received
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-chat-dots sidebar__nav-icon" aria-hidden="true"></i>
-                Messenger
-            </a>
-            <a href="#" class="sidebar__nav-item">
-                <i class="bi bi-diagram-3 sidebar__nav-icon" aria-hidden="true"></i>
-                Plan
-            </a>
-        </nav>
-
-        <!-- Quick Metrics -->
-        <div class="sidebar__section-title">Quick Metrics</div>
-        <div class="sidebar__metrics">
-            <div class="sidebar__metrics-donut">
-                <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-label="75% open cases">
-                    <circle cx="30" cy="30" r="24" fill="none" stroke="#e8ecf0" stroke-width="7" />
-                    <circle cx="30" cy="30" r="24" fill="none" stroke="#1DB954" stroke-width="7"
-                        stroke-dasharray="113 38" stroke-dashoffset="38" stroke-linecap="round"
-                        transform="rotate(-90 30 30)" />
-                    <text id="donutPct" x="30" y="34" text-anchor="middle" font-size="11" font-weight="700"
-                        fill="#1a1a2e">75%</text>
-                </svg>
-                <ul class="sidebar__metrics-legend">
-                    <li><span class="dot" style="background:#1DB954"></span> Open Cases: 53</li>
-                    <li><span class="dot" style="background:#1976d2"></span> Total Billed Hrs: 53</li>
-                    <li><span class="dot" style="background:#f57c00"></span> Unpaid Invoices: 53</li>
-                </ul>
+            <!-- Logo -->
+            <div class="sidebar__logo">
+                <div class="sidebar__logo-wordmark">Advocate<span>Go</span></div>
+                <div class="sidebar__logo-powered">Powered by LegalTech AI</div>
             </div>
-        </div>
 
-        <!-- Recent Activity -->
-        <div class="sidebar__section-title">Recent Activity</div>
-        <div class="sidebar__activity">
-            <div class="activity-item">
-                <div>
-                    <div class="activity-item__title">Lorem ipsum</div>
-                    <div class="activity-item__time">Jul 13, 2:29 AM</div>
+            <!-- Nav -->
+            <nav class="sidebar__nav">
+                <div class="sidebar__section-title">Main Menu</div>
+
+                <a href="#" class="sidebar__nav-item is-active">
+                    <i class="bi bi-grid-1x2-fill sidebar__nav-icon"></i>
+                    Dashboard
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <i class="bi bi-briefcase-fill sidebar__nav-icon"></i>
+                    Cases
+                    <i class="bi bi-chevron-right sidebar__nav-arrow"></i>
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <i class="bi bi-people-fill sidebar__nav-icon"></i>
+                    Clients
+                    <i class="bi bi-chevron-right sidebar__nav-arrow"></i>
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <i class="bi bi-calendar3 sidebar__nav-icon"></i>
+                    Schedule
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <i class="bi bi-receipt sidebar__nav-icon"></i>
+                    Billing
+                    <i class="bi bi-chevron-right sidebar__nav-arrow"></i>
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <i class="bi bi-folder2-open sidebar__nav-icon"></i>
+                    Documents
+                </a>
+
+                <div class="sidebar__section-title mt-2">Analytics</div>
+                <a href="#" class="sidebar__nav-item">
+                    <i class="bi bi-bar-chart-line-fill sidebar__nav-icon"></i>
+                    Reports
+                </a>
+                <a href="#" class="sidebar__nav-item">
+                    <i class="bi bi-clock-history sidebar__nav-icon"></i>
+                    Time Tracker
+                </a>
+
+                <div class="sidebar__section-title mt-2">Settings</div>
+                <a href="#" class="sidebar__nav-item">
+                    <i class="bi bi-gear-fill sidebar__nav-icon"></i>
+                    Settings
+                </a>
+            </nav>
+
+            <!-- Quick Metrics Donut -->
+            <div class="sidebar__metrics">
+                <div class="sidebar__section-title" style="padding-left:0;margin-bottom:10px">Case Overview</div>
+                <div class="sidebar__metrics-donut">
+                    <svg viewBox="0 0 36 36">
+                        <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--border-color)" stroke-width="3.2" />
+                        <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--primary)" stroke-width="3.2"
+                            stroke-dasharray="62 38" stroke-dashoffset="25" stroke-linecap="round" />
+                        <circle cx="18" cy="18" r="15.9" fill="none" stroke="#1976d2" stroke-width="3.2"
+                            stroke-dasharray="22 78" stroke-dashoffset="-37" stroke-linecap="round" />
+                        <circle cx="18" cy="18" r="15.9" fill="none" stroke="#f57c00" stroke-width="3.2"
+                            stroke-dasharray="16 84" stroke-dashoffset="-59" stroke-linecap="round" />
+                        <text x="18" y="20.5" text-anchor="middle" font-size="7" font-weight="700"
+                            fill="var(--text-primary)">124</text>
+                    </svg>
+                    <ul class="sidebar__metrics-legend">
+                        <li><span class="dot" style="background:var(--primary)"></span>Active (62)</li>
+                        <li><span class="dot" style="background:#1976d2"></span>Pending (22)</li>
+                        <li><span class="dot" style="background:#f57c00"></span>Closed (16)</li>
+                        <li><span class="dot" style="background:var(--border-color)"></span>Other (24)</li>
+                    </ul>
                 </div>
-                <div class="activity-item__icon" aria-hidden="true"><i class="bi bi-check2"></i></div>
             </div>
-            <div class="activity-item">
-                <div>
-                    <div class="activity-item__title">Lorem ipsum</div>
-                    <div class="activity-item__time">Jul 13, 2:29 AM</div>
+
+            <!-- Recent Activity -->
+            <div class="sidebar__activity">
+                <div class="sidebar__section-title" style="padding-left:0;margin-bottom:6px">Recent Activity</div>
+                <div class="activity-item">
+                    <div class="activity-item__icon"><i class="bi bi-file-earmark-text"></i></div>
+                    <div>
+                        <div class="activity-item__title">Invoice #1024 sent</div>
+                        <div class="activity-item__time">2 min ago</div>
+                    </div>
                 </div>
-                <div class="activity-item__icon" aria-hidden="true"><i class="bi bi-check2"></i></div>
-            </div>
-            <div class="activity-item">
-                <div>
-                    <div class="activity-item__title">Lorem ipsum</div>
-                    <div class="activity-item__time">Jul 13, 2:29 AM</div>
+                <div class="activity-item">
+                    <div class="activity-item__icon"><i class="bi bi-person-check"></i></div>
+                    <div>
+                        <div class="activity-item__title">Client onboarded</div>
+                        <div class="activity-item__time">18 min ago</div>
+                    </div>
                 </div>
-                <div class="activity-item__icon" aria-hidden="true"><i class="bi bi-check2"></i></div>
+                <div class="activity-item">
+                    <div class="activity-item__icon"><i class="bi bi-calendar-check"></i></div>
+                    <div>
+                        <div class="activity-item__title">Hearing rescheduled</div>
+                        <div class="activity-item__time">1 hr ago</div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- Quick Actions -->
-        <div class="sidebar__section-title">Quick Actions</div>
-        <div class="sidebar__actions">
-            <button class="quick-action-btn" type="button">
-                Create case
-                <span class="quick-action-btn__icon" aria-hidden="true"><i class="bi bi-plus-lg"></i></span>
-            </button>
-            <button class="quick-action-btn" type="button">
-                Add Client
-                <span class="quick-action-btn__icon" aria-hidden="true"><i class="bi bi-person-plus"></i></span>
-            </button>
-            <button class="quick-action-btn" type="button">
-                Upload Document
-                <span class="quick-action-btn__icon" aria-hidden="true"><i class="bi bi-cloud-upload"></i></span>
-            </button>
-        </div>
+            <!-- Quick Actions -->
+            <div class="sidebar__actions">
+                <div class="sidebar__section-title" style="padding-left:0;margin-bottom:8px">Quick Actions</div>
+                <button class="quick-action-btn">
+                    <i class="bi bi-plus-lg me-2"></i>New Case
+                    <span class="quick-action-btn__icon"><i class="bi bi-briefcase"></i></span>
+                </button>
+                <button class="quick-action-btn">
+                    <i class="bi bi-plus-lg me-2"></i>New Invoice
+                    <span class="quick-action-btn__icon"><i class="bi bi-receipt"></i></span>
+                </button>
+                <button class="quick-action-btn">
+                    <i class="bi bi-plus-lg me-2"></i>Add Client
+                    <span class="quick-action-btn__icon"><i class="bi bi-person-plus"></i></span>
+                </button>
+            </div>
 
-    </aside><!-- /sidebar -->
+        </aside><!-- /sidebar -->
 
-
-    <!-- ═══════════════════════════════════════════════════════
+        <!-- ─────────────────────────────────────────────────────
        TOPBAR
-  ════════════════════════════════════════════════════════ -->
-    <header class="topbar" role="banner">
-
-        <!-- Hamburger (mobile) -->
-        <button class="topbar__hamburger" id="hamburgerBtn" type="button" aria-label="Open navigation menu"
-            aria-expanded="false" aria-controls="sidebar">
-            <i class="bi bi-list" aria-hidden="true"></i>
-        </button>
-
-        <!-- Search -->
-        <div class="topbar__search" role="search">
-            <i class="bi bi-search" aria-hidden="true"></i>
-            <input type="search" id="globalSearch" placeholder="Search here..." aria-label="Global search"
-                autocomplete="off" />
-        </div>
-
-        <!-- Actions -->
-        <div class="topbar__actions">
-            <button class="icon-btn" type="button" aria-label="Settings">
-                <i class="bi bi-gear" aria-hidden="true"></i>
-            </button>
-            <button class="icon-btn" type="button" aria-label="Timer">
-                <i class="bi bi-stopwatch" aria-hidden="true"></i>
-            </button>
-            <button class="icon-btn" type="button" aria-label="Notifications — 1 unread">
-                <i class="bi bi-bell" aria-hidden="true"></i>
-                <span class="icon-btn__badge" aria-hidden="true"></span>
+  ──────────────────────────────────────────────────────── -->
+        <header class="topbar" id="topbar">
+            <button class="topbar__hamburger" id="hamburgerBtn" aria-label="Toggle sidebar">
+                <i class="bi bi-list"></i>
             </button>
 
-            <!-- Dark / Light toggle -->
-            <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch to dark mode">
-                <i class="bi bi-moon-stars-fill" id="themeIcon" aria-hidden="true"></i>
-            </button>
-
-            <!-- User -->
-            <div class="topbar__user" role="button" tabindex="0" aria-haspopup="true" aria-label="User menu">
-                <div class="topbar__user-avatar" aria-hidden="true">JR</div>
-                <span class="topbar__user-name">James R.</span>
-                <i class="bi bi-chevron-down topbar__user-chevron" aria-hidden="true"></i>
+            <!-- Search -->
+            <div class="topbar__search">
+                <i class="bi bi-search"></i>
+                <input type="text" id="globalSearch" placeholder="Search cases, clients, invoices…"
+                    autocomplete="off" />
             </div>
-        </div>
 
-    </header><!-- /topbar -->
+            <!-- Actions -->
+            <div class="topbar__actions">
+                <!-- Dark mode -->
+                <button class="icon-btn" id="themeToggle" title="Toggle Dark Mode">
+                    <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+                </button>
 
+                <!-- Notifications -->
+                <button class="icon-btn" title="Notifications">
+                    <i class="bi bi-bell-fill"></i>
+                    <span class="icon-btn__badge"></span>
+                </button>
 
-    <!-- ═══════════════════════════════════════════════════════
+                <!-- Messages -->
+                <button class="icon-btn" title="Messages">
+                    <i class="bi bi-chat-dots-fill"></i>
+                </button>
+
+                <!-- User -->
+                <div class="topbar__user">
+                    <div class="topbar__user-avatar">SC</div>
+                    <span class="topbar__user-name">Sakib C.</span>
+                    <i class="bi bi-chevron-down topbar__user-chevron"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- ─────────────────────────────────────────────────────
        MAIN CONTENT
-  ════════════════════════════════════════════════════════ -->
-    <main class="main-content" id="mainContent">
+  ──────────────────────────────────────────────────────── -->
+        <main class="main-content" id="mainContent">
 
-        <!-- Page Header -->
-        <div class="page-header">
-            <h1 class="page-header__title">Dashboard</h1>
-            <p class="page-header__subtitle">Lorem Ipsum is dummy text for dummy</p>
-        </div>
-
-
-        <!-- ── STAT CARDS ─────────────────────────────────────── -->
-        <div class="row g-3 mb-4">
-            <div class="col-6 col-sm-4 col-lg">
-                <div class="stat-card">
-                    <div>
-                        <div class="stat-card__label">Total Cases</div>
-                        <div class="stat-card__value">14</div>
-                    </div>
-                    <div class="stat-card__icon stat-card__icon--green" aria-hidden="true">
-                        <i class="bi bi-house-door"></i>
-                    </div>
-                </div>
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-header__title">Dashboard</h1>
+                <p class="page-header__subtitle">Welcome back, Sakib — here's your practice overview for today.</p>
             </div>
-            <div class="col-6 col-sm-4 col-lg">
-                <div class="stat-card">
-                    <div>
-                        <div class="stat-card__label">Total Advocates</div>
-                        <div class="stat-card__value">10</div>
-                    </div>
-                    <div class="stat-card__icon stat-card__icon--blue" aria-hidden="true">
-                        <i class="bi bi-person-badge"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-sm-4 col-lg">
-                <div class="stat-card">
-                    <div>
-                        <div class="stat-card__label">Total Documents</div>
-                        <div class="stat-card__value">11</div>
-                    </div>
-                    <div class="stat-card__icon stat-card__icon--orange" aria-hidden="true">
-                        <i class="bi bi-file-earmark-text"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-sm-6 col-lg">
-                <div class="stat-card">
-                    <div>
-                        <div class="stat-card__label">Total Team Members</div>
-                        <div class="stat-card__value">20</div>
-                    </div>
-                    <div class="stat-card__icon stat-card__icon--purple" aria-hidden="true">
-                        <i class="bi bi-people"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg">
-                <div class="stat-card">
-                    <div>
-                        <div class="stat-card__label">Total To-Dos</div>
-                        <div class="stat-card__value">12</div>
-                    </div>
-                    <div class="stat-card__icon stat-card__icon--red" aria-hidden="true">
-                        <i class="bi bi-check2-square"></i>
-                    </div>
-                </div>
-            </div>
-        </div><!-- /stat cards -->
 
-
-        <!-- ── TASKS + CALENDAR ───────────────────────────────── -->
-        <div class="row g-3 mb-4">
-
-            <!-- Tasks Due Today -->
-            <div class="col-12 col-lg-4">
-                <div class="section-card">
-                    <div class="section-card__header">
-                        <h2 class="section-card__title">Tasks Due Today</h2>
-                        <button class="btn-primary" type="button">
-                            <i class="bi bi-check2" aria-hidden="true"></i> Mark as Done
-                        </button>
-                    </div>
-
-                    <ul class="task-list" id="tasksDueList" aria-label="Tasks due today">
-                        <li class="task-item is-done">
-                            <input class="task-item__cb" type="checkbox" checked id="t1" aria-label="Task 1" />
-                            <label for="t1">
-                                <div class="task-item__title">Work with your attorney to conduct.</div>
-                                <div class="task-item__date">Jul 13, 2:29 AM</div>
-                            </label>
-                        </li>
-                        <li class="task-item">
-                            <input class="task-item__cb" type="checkbox" id="t2" aria-label="Task 2" />
-                            <label for="t2">
-                                <div class="task-item__title">Work with your attorney to conduct.</div>
-                                <div class="task-item__date">Jul 13, 2:29 AM</div>
-                            </label>
-                        </li>
-                        <li class="task-item">
-                            <input class="task-item__cb" type="checkbox" id="t3" aria-label="Task 3" />
-                            <label for="t3">
-                                <div class="task-item__title">Work with your attorney to conduct.</div>
-                                <div class="task-item__date">Jul 13, 2:29 AM</div>
-                            </label>
-                        </li>
-                        <li class="task-item">
-                            <input class="task-item__cb" type="checkbox" id="t4" aria-label="Task 4" />
-                            <label for="t4">
-                                <div class="task-item__title">Work with your attorney to conduct.</div>
-                                <div class="task-item__date">Jul 13, 2:29 AM</div>
-                            </label>
-                        </li>
-                        <li class="task-item">
-                            <input class="task-item__cb" type="checkbox" id="t5" aria-label="Task 5" />
-                            <label for="t5">
-                                <div class="task-item__title">Work with your attorney to conduct.</div>
-                                <div class="task-item__date">Jul 13, 2:29 AM</div>
-                            </label>
-                        </li>
-                    </ul>
-
-                    <div class="progress-wrap" aria-live="polite" aria-atomic="true">
-                        <div class="progress-meta">
-                            <span class="progress-meta__label">Progress</span>
-                            <span class="progress-meta__count" id="progressText">1 of 5 tasks completed</span>
-                        </div>
-                        <div class="progress-bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="100"
-                            aria-valuenow="20">
-                            <div class="progress-bar-fill" id="progressFill" style="width: 20%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /tasks due today -->
-
-            <!-- Today's To-Do's -->
-            <div class="col-12 col-lg-4">
-                <div class="section-card">
-                    <div class="section-card__header">
-                        <h2 class="section-card__title">Today's To-Do's</h2>
-                        <button class="btn-primary" type="button">
-                            <i class="bi bi-check2" aria-hidden="true"></i> Mark as Done
-                        </button>
-                    </div>
-
-                    <ul class="task-list" aria-label="Today's to-do list">
-                        <li class="task-item is-done">
-                            <input class="task-item__cb" type="checkbox" checked id="td1" aria-label="Todo 1" />
-                            <label for="td1">
-                                <div class="task-item__title">Work with your attorney to conduct.</div>
-                                <div class="task-item__date">Jul 13, 2:29 AM</div>
-                            </label>
-                        </li>
-                        <li class="task-item">
-                            <input class="task-item__cb" type="checkbox" id="td2" aria-label="Todo 2" />
-                            <label for="td2">
-                                <div class="task-item__title">Work with your attorney to conduct.</div>
-                                <div class="task-item__date">Jul 13, 2:29 AM</div>
-                            </label>
-                        </li>
-                        <li class="task-item">
-                            <input class="task-item__cb" type="checkbox" id="td3" aria-label="Todo 3" />
-                            <label for="td3">
-                                <div class="task-item__title">Work with your attorney to conduct.</div>
-                                <div class="task-item__date">Jul 13, 2:29 AM</div>
-                            </label>
-                        </li>
-                        <li class="task-item">
-                            <input class="task-item__cb" type="checkbox" id="td4" aria-label="Todo 4" />
-                            <label for="td4">
-                                <div class="task-item__title">Work with your attorney to conduct.</div>
-                                <div class="task-item__date">Jul 13, 2:29 AM</div>
-                            </label>
-                        </li>
-                        <li class="task-item">
-                            <input class="task-item__cb" type="checkbox" id="td5" aria-label="Todo 5" />
-                            <label for="td5">
-                                <div class="task-item__title">Work with your attorney to conduct.</div>
-                                <div class="task-item__date">Jul 13, 2:29 AM</div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-            </div><!-- /today's todos -->
-
-            <!-- Calendar -->
-            <div class="col-12 col-lg-4">
-                <div class="section-card">
-                    <div class="cal-header">
-                        <div class="cal-header__title">Today, 07 July</div>
-                        <div class="cal-week-select" role="button" tabindex="0" aria-label="View: Weekly">
-                            Weekly <i class="bi bi-chevron-down" aria-hidden="true" style="font-size:10px"></i>
-                        </div>
-                    </div>
-
-                    <div class="week-days" role="tablist" aria-label="Week day selector">
-                        <div class="week-day" role="tab" tabindex="0" aria-selected="false" aria-label="Monday 5">
-                            <div class="week-day__name">Mon</div>
-                            <div class="week-day__num">05</div>
-                            <div class="week-day__dots">
-                                <span class="week-day__dot" style="background:#1DB954" aria-hidden="true"></span>
-                                <span class="week-day__dot" style="background:#1DB954" aria-hidden="true"></span>
-                                <span class="week-day__dot" style="background:#1DB954" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="week-day" role="tab" tabindex="0" aria-selected="false" aria-label="Tuesday 6">
-                            <div class="week-day__name">Tue</div>
-                            <div class="week-day__num">06</div>
-                            <div class="week-day__dots">
-                                <span class="week-day__dot" style="background:#1DB954" aria-hidden="true"></span>
-                                <span class="week-day__dot" style="background:#1976d2" aria-hidden="true"></span>
-                                <span class="week-day__dot" style="background:#f57c00" aria-hidden="true"></span>
-                                <span class="week-day__dot" style="background:#7c3aed" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="week-day is-active" role="tab" tabindex="0" aria-selected="true"
-                            aria-label="Wednesday 7 — today">
-                            <div class="week-day__name">Wed</div>
-                            <div class="week-day__num">07</div>
-                            <div class="week-day__dots">
-                                <span class="week-day__dot" style="background:rgba(255,255,255,.5)"
-                                    aria-hidden="true"></span>
-                                <span class="week-day__dot" style="background:rgba(255,255,255,.5)"
-                                    aria-hidden="true"></span>
-                                <span class="week-day__dot" style="background:rgba(255,255,255,.5)"
-                                    aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="week-day" role="tab" tabindex="0" aria-selected="false" aria-label="Thursday 8">
-                            <div class="week-day__name">Thu</div>
-                            <div class="week-day__num">08</div>
-                            <div class="week-day__dots">
-                                <span class="week-day__dot" style="background:#1DB954" aria-hidden="true"></span>
-                                <span class="week-day__dot" style="background:#f57c00" aria-hidden="true"></span>
-                                <span class="week-day__dot" style="background:#7c3aed" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="week-day" role="tab" tabindex="0" aria-selected="false" aria-label="Friday 9">
-                            <div class="week-day__name">Fri</div>
-                            <div class="week-day__num">09</div>
-                            <div class="week-day__dots">
-                                <span class="week-day__dot" style="background:#1976d2" aria-hidden="true"></span>
-                                <span class="week-day__dot" style="background:#1DB954" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="time-label">08:00 am</div>
-                    <div class="time-label">09:00 am</div>
-
-                    <div class="cal-event cal-event--green">
-                        <div class="cal-event__icon" aria-hidden="true"><i class="bi bi-calendar-event"></i></div>
+            <!-- ── STAT CARDS ── -->
+            <div class="row g-3 mb-4">
+                <div class="col-6 col-md-4 col-lg-2half">
+                    <div class="stat-card">
                         <div>
-                            <div class="cal-event__title">Client Meeting</div>
-                            <div class="cal-event__desc">Prepare evidence for cross examination</div>
+                            <div class="stat-card__label">Active Cases</div>
+                            <div class="stat-card__value">62</div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--green">
+                            <i class="bi bi-briefcase-fill"></i>
                         </div>
                     </div>
-
-                    <div class="time-label">09:00 am</div>
-                    <div class="cal-event cal-event--purple">
-                        <div class="cal-event__icon" aria-hidden="true"><i class="bi bi-calendar-event"></i></div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2half">
+                    <div class="stat-card">
                         <div>
-                            <div class="cal-event__title">Client Meeting</div>
-                            <div class="cal-event__desc">Prepare evidence for cross examination</div>
+                            <div class="stat-card__label">Clients</div>
+                            <div class="stat-card__value">148</div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--blue">
+                            <i class="bi bi-people-fill"></i>
                         </div>
                     </div>
-
-                    <div class="time-label">09:00 am</div>
-                    <div class="cal-event cal-event--orange">
-                        <div class="cal-event__icon" aria-hidden="true"><i class="bi bi-calendar-event"></i></div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2half">
+                    <div class="stat-card">
                         <div>
-                            <div class="cal-event__title">Client Meeting</div>
-                            <div class="cal-event__desc">Prepare evidence for cross examination</div>
+                            <div class="stat-card__label">Revenue</div>
+                            <div class="stat-card__value">$84k</div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--green">
+                            <i class="bi bi-currency-dollar"></i>
                         </div>
                     </div>
                 </div>
-            </div><!-- /calendar -->
-
-        </div><!-- /tasks + calendar row -->
-
-
-        <!-- ── BILLING + TASK TABLE ───────────────────────────── -->
-        <div class="row g-3 mb-4">
-
-            <!-- Billing Overview -->
-            <div class="col-12 col-lg-6">
-                <div class="section-card">
-                    <div class="section-card__header">
-                        <h2 class="section-card__title">Billing Overview</h2>
-                        <button class="btn-primary" type="button">
-                            <i class="bi bi-send" aria-hidden="true"></i> Send Invoice
-                        </button>
-                    </div>
-
-                    <div class="mb-3">
-                        <input type="search" class="table-search" id="billingSearch" placeholder="Search billing…"
-                            aria-label="Search billing table" autocomplete="off" />
-                    </div>
-
-                    <div class="table-wrapper">
-                        <table class="data-table" id="billingTable" aria-label="Billing overview">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID <span class="sort-icon" aria-hidden="true">↑↓</span></th>
-                                    <th scope="col">Name <span class="sort-icon" aria-hidden="true">↑↓</span></th>
-                                    <th scope="col">Due Date <span class="sort-icon" aria-hidden="true">↑↓</span></th>
-                                    <th scope="col">Status <span class="sort-icon" aria-hidden="true">↑↓</span></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>#12345</td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Jul 13, 2025</td>
-                                    <td><span class="badge badge--paid">Paid</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#12345</td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Jul 13, 2025</td>
-                                    <td><span class="badge badge--unpaid">Unpaid</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#12345</td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Jul 13, 2025</td>
-                                    <td><span class="badge badge--paid">Paid</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#12345</td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Jul 13, 2025</td>
-                                    <td><span class="badge badge--paid">Paid</span></td>
-                                </tr>
-                                <tr>
-                                    <td>#12345</td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Jul 13, 2025</td>
-                                    <td><span class="badge badge--unpaid">Unpaid</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div><!-- /billing -->
-
-            <!-- Tasks & To-Do Table -->
-            <div class="col-12 col-lg-6">
-                <div class="section-card">
-                    <div class="section-card__header">
-                        <h2 class="section-card__title">Tasks &amp; To-Do</h2>
-                        <div class="section-card__actions">
-                            <button class="btn-primary" type="button">
-                                <i class="bi bi-check2" aria-hidden="true"></i> Mark as Done
-                            </button>
-                            <select class="filter-select" id="priorityFilter" aria-label="Filter by priority">
-                                <option value="">All</option>
-                                <option value="High">High</option>
-                                <option value="Medium">Medium</option>
-                                <option value="Low">Low</option>
-                            </select>
+                <div class="col-6 col-md-4 col-lg-2half">
+                    <div class="stat-card">
+                        <div>
+                            <div class="stat-card__label">Hearings</div>
+                            <div class="stat-card__value">12</div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--orange">
+                            <i class="bi bi-calendar-event-fill"></i>
                         </div>
                     </div>
-
-                    <div class="mb-3">
-                        <input type="search" class="table-search" id="taskSearch" placeholder="Search tasks…"
-                            aria-label="Search task table" autocomplete="off" />
-                    </div>
-
-                    <div class="table-wrapper">
-                        <table class="data-table" id="taskTable" aria-label="Tasks and to-do list">
-                            <thead>
-                                <tr>
-                                    <th scope="col" style="width:32px;"></th>
-                                    <th scope="col">Title <span class="sort-icon" aria-hidden="true">↑↓</span></th>
-                                    <th scope="col">Client <span class="sort-icon" aria-hidden="true">↑↓</span></th>
-                                    <th scope="col">Due Date <span class="sort-icon" aria-hidden="true">↑↓</span></th>
-                                    <th scope="col">Priority <span class="sort-icon" aria-hidden="true">↑↓</span></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type="checkbox" checked style="accent-color:var(--primary)"
-                                            aria-label="Task done" /></td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Jul 13, 2025</td>
-                                    <td><span class="badge badge--high">High</span></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" style="accent-color:var(--primary)"
-                                            aria-label="Task done" /></td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Jul 13, 2025</td>
-                                    <td><span class="badge badge--high">High</span></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" checked style="accent-color:var(--primary)"
-                                            aria-label="Task done" /></td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Jul 13, 2025</td>
-                                    <td><span class="badge badge--high">High</span></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" style="accent-color:var(--primary)"
-                                            aria-label="Task done" /></td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Jul 13, 2025</td>
-                                    <td><span class="badge badge--high">High</span></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" checked style="accent-color:var(--primary)"
-                                            aria-label="Task done" /></td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Lorem Ipsum</td>
-                                    <td>Jul 13, 2025</td>
-                                    <td><span class="badge badge--high">High</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
-            </div><!-- /task table -->
-
-        </div><!-- /billing + task row -->
-
-
-        <!-- ── ACTIVE CASES ───────────────────────────────────── -->
-        <div class="section-card">
-            <div class="section-card__header">
-                <h2 class="section-card__title">Active Cases</h2>
-                <div class="section-card__actions">
-                    <label for="caseTypeFilter" class="visually-hidden">Filter by Case Type</label>
-                    <span style="font-size:12px;color:var(--text-secondary);">Filter by:</span>
-                    <select class="filter-select" id="caseTypeFilter" aria-label="Filter cases by type">
-                        <option>Case Type</option>
-                        <option>Civil</option>
-                        <option>Criminal</option>
-                        <option>Corporate</option>
-                        <option>Family</option>
-                    </select>
+                <div class="col-6 col-md-4 col-lg-2half">
+                    <div class="stat-card">
+                        <div>
+                            <div class="stat-card__label">Pending</div>
+                            <div class="stat-card__value">27</div>
+                        </div>
+                        <div class="stat-card__icon stat-card__icon--purple">
+                            <i class="bi bi-hourglass-split"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Case 1 -->
-            <article class="case-card">
-                <div class="case-card__header">
-                    <h3 class="case-card__title">Work with your attorney to conduct.</h3>
-                    <span class="badge badge--awaiting">Awaiting Docs</span>
-                </div>
-                <div class="case-card__client">
-                    <i class="bi bi-person-circle" aria-hidden="true"></i> Client Name
-                </div>
-                <div class="case-card__assigned-label">Assigned To:</div>
-                <div class="case-card__avatars">
-                    <div class="avatar avatar--1" aria-label="James Ryan">JR</div>
-                    <div class="avatar avatar--2" aria-label="James Ryan">JR</div>
-                    <div class="avatar avatar--3" aria-label="James Ryan">JR</div>
-                    <span class="avatar__name">James Ryan &nbsp;·&nbsp; James Ryan &nbsp;·&nbsp; James Ryan</span>
-                </div>
-            </article>
+            <!-- ── ROW 2: Tasks + Calendar ── -->
+            <div class="row g-3 mb-4">
 
-            <!-- Case 2 -->
-            <article class="case-card">
-                <div class="case-card__header">
-                    <h3 class="case-card__title">Work with your attorney to conduct.</h3>
-                    <span class="badge badge--awaiting">Awaiting Docs</span>
-                </div>
-                <div class="case-card__client">
-                    <i class="bi bi-person-circle" aria-hidden="true"></i> Client Name
-                </div>
-                <div class="case-card__assigned-label">Assigned To:</div>
-                <div class="case-card__avatars">
-                    <div class="avatar avatar--1" aria-label="James Ryan">JR</div>
-                    <div class="avatar avatar--2" aria-label="James Ryan">JR</div>
-                    <div class="avatar avatar--3" aria-label="James Ryan">JR</div>
-                    <span class="avatar__name">James Ryan &nbsp;·&nbsp; James Ryan &nbsp;·&nbsp; James Ryan</span>
-                </div>
-            </article>
+                <!-- Tasks -->
+                <div class="col-12 col-lg-5">
+                    <div class="section-card">
+                        <div class="section-card__header">
+                            <h2 class="section-card__title">Today's Tasks</h2>
+                            <div class="section-card__actions">
+                                <button class="btn-primary"><i class="bi bi-plus-lg"></i> Add</button>
+                            </div>
+                        </div>
 
-            <!-- Case 3 -->
-            <article class="case-card">
-                <div class="case-card__header">
-                    <h3 class="case-card__title">Work with your attorney to conduct.</h3>
-                    <span class="badge badge--awaiting">Awaiting Docs</span>
+                        <ul class="task-list" id="taskList">
+                            <li class="task-item">
+                                <input type="checkbox" class="task-item__cb" />
+                                <div>
+                                    <div class="task-item__title">Review Mehta vs State documents</div>
+                                    <div class="task-item__date"><i class="bi bi-clock me-1"></i>Due 10:00 AM</div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-item__cb" />
+                                <div>
+                                    <div class="task-item__title">File bail application for Rahman</div>
+                                    <div class="task-item__date"><i class="bi bi-clock me-1"></i>Due 11:30 AM</div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-item__cb" checked />
+                                <div>
+                                    <div class="task-item__title">Client consultation — Priya Sharma</div>
+                                    <div class="task-item__date"><i class="bi bi-clock me-1"></i>Done — 9:00 AM</div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-item__cb" />
+                                <div>
+                                    <div class="task-item__title">Prepare cross-examination notes</div>
+                                    <div class="task-item__date"><i class="bi bi-clock me-1"></i>Due 3:00 PM</div>
+                                </div>
+                            </li>
+                            <li class="task-item">
+                                <input type="checkbox" class="task-item__cb" />
+                                <div>
+                                    <div class="task-item__title">Send invoice #1025 to client</div>
+                                    <div class="task-item__date"><i class="bi bi-clock me-1"></i>Due 5:00 PM</div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="progress-wrap">
+                            <div class="progress-meta">
+                                <span class="progress-meta__label">Progress</span>
+                                <span class="progress-meta__count" id="progressCount">1 / 5 done</span>
+                            </div>
+                            <div class="progress-bar-track">
+                                <div class="progress-bar-fill" id="progressFill" style="width:20%"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="case-card__client">
-                    <i class="bi bi-person-circle" aria-hidden="true"></i> Client Name
+
+                <!-- Calendar -->
+                <div class="col-12 col-lg-7">
+                    <div class="section-card">
+                        <div class="section-card__header">
+                            <h2 class="section-card__title">Weekly Schedule</h2>
+                            <div class="cal-week-select">
+                                <i class="bi bi-calendar3 me-1"></i> May 2025
+                                <i class="bi bi-chevron-down ms-1"></i>
+                            </div>
+                        </div>
+
+                        <div class="week-days">
+                            <div class="week-day">
+                                <div class="week-day__name">MON</div>
+                                <div class="week-day__num">5</div>
+                                <div class="week-day__dots">
+                                    <div class="week-day__dot" style="background:var(--primary)"></div>
+                                </div>
+                            </div>
+                            <div class="week-day">
+                                <div class="week-day__name">TUE</div>
+                                <div class="week-day__num">6</div>
+                                <div class="week-day__dots">
+                                    <div class="week-day__dot" style="background:#1976d2"></div>
+                                    <div class="week-day__dot" style="background:var(--primary)"></div>
+                                </div>
+                            </div>
+                            <div class="week-day is-active">
+                                <div class="week-day__name">WED</div>
+                                <div class="week-day__num">7</div>
+                                <div class="week-day__dots">
+                                    <div class="week-day__dot" style="background:rgba(255,255,255,.5)"></div>
+                                    <div class="week-day__dot" style="background:rgba(255,255,255,.5)"></div>
+                                    <div class="week-day__dot" style="background:rgba(255,255,255,.5)"></div>
+                                </div>
+                            </div>
+                            <div class="week-day">
+                                <div class="week-day__name">THU</div>
+                                <div class="week-day__num">8</div>
+                                <div class="week-day__dots">
+                                    <div class="week-day__dot" style="background:#7c3aed"></div>
+                                </div>
+                            </div>
+                            <div class="week-day">
+                                <div class="week-day__name">FRI</div>
+                                <div class="week-day__num">9</div>
+                                <div class="week-day__dots">
+                                    <div class="week-day__dot" style="background:#f57c00"></div>
+                                    <div class="week-day__dot" style="background:var(--primary)"></div>
+                                </div>
+                            </div>
+                            <div class="week-day">
+                                <div class="week-day__name">SAT</div>
+                                <div class="week-day__num">10</div>
+                                <div class="week-day__dots"></div>
+                            </div>
+                            <div class="week-day">
+                                <div class="week-day__name">SUN</div>
+                                <div class="week-day__num">11</div>
+                                <div class="week-day__dots"></div>
+                            </div>
+                        </div>
+
+                        <div class="time-label">Wednesday, 7 May — Today</div>
+
+                        <div class="cal-event cal-event--green">
+                            <div class="cal-event__icon"><i class="bi bi-briefcase-fill"></i></div>
+                            <div>
+                                <div class="cal-event__title">Court Hearing — Mehta vs State</div>
+                                <div class="cal-event__desc">10:00 AM – 12:00 PM · District Court, Room 4</div>
+                            </div>
+                        </div>
+                        <div class="cal-event cal-event--purple">
+                            <div class="cal-event__icon"><i class="bi bi-people-fill"></i></div>
+                            <div>
+                                <div class="cal-event__title">Client Meeting — Priya Sharma</div>
+                                <div class="cal-event__desc">2:00 PM – 3:00 PM · Office Conference Room</div>
+                            </div>
+                        </div>
+                        <div class="cal-event cal-event--orange">
+                            <div class="cal-event__icon"><i class="bi bi-file-earmark-text-fill"></i></div>
+                            <div>
+                                <div class="cal-event__title">Document Deadline — Rahman Bail App</div>
+                                <div class="cal-event__desc">5:00 PM · File with High Court Registry</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="case-card__assigned-label">Assigned To:</div>
-                <div class="case-card__avatars">
-                    <div class="avatar avatar--1" aria-label="James Ryan">JR</div>
-                    <div class="avatar avatar--2" aria-label="James Ryan">JR</div>
-                    <div class="avatar avatar--3" aria-label="James Ryan">JR</div>
-                    <span class="avatar__name">James Ryan &nbsp;·&nbsp; James Ryan &nbsp;·&nbsp; James Ryan</span>
+            </div>
+
+            <!-- ── ROW 3: Invoice Table ── -->
+            <div class="row g-3 mb-4">
+                <div class="col-12">
+                    <div class="section-card">
+                        <div class="section-card__header">
+                            <h2 class="section-card__title">Recent Invoices</h2>
+                            <div class="section-card__actions">
+                                <input type="text" class="table-search" id="invoiceSearch"
+                                    placeholder="Search invoices…" />
+                                <select class="filter-select" id="invoiceFilter">
+                                    <option value="">All Status</option>
+                                    <option value="paid">Paid</option>
+                                    <option value="unpaid">Unpaid</option>
+                                </select>
+                                <button class="btn-primary"><i class="bi bi-plus-lg"></i> New Invoice</button>
+                            </div>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="data-table" id="invoiceTable">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice <i class="bi bi-arrow-down-up sort-icon"></i></th>
+                                        <th>Client <i class="bi bi-arrow-down-up sort-icon"></i></th>
+                                        <th>Case</th>
+                                        <th>Amount <i class="bi bi-arrow-down-up sort-icon"></i></th>
+                                        <th>Status</th>
+                                        <th>Due Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="invoiceTableBody">
+                                    <tr>
+                                        <td><strong>#1024</strong></td>
+                                        <td>Priya Sharma</td>
+                                        <td>Property Dispute</td>
+                                        <td>$2,400</td>
+                                        <td><span class="badge badge--paid">Paid</span></td>
+                                        <td>May 01, 2025</td>
+                                        <td><button class="btn-outline">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>#1023</strong></td>
+                                        <td>Arjun Mehta</td>
+                                        <td>Criminal Defense</td>
+                                        <td>$5,800</td>
+                                        <td><span class="badge badge--unpaid">Unpaid</span></td>
+                                        <td>May 10, 2025</td>
+                                        <td><button class="btn-outline">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>#1022</strong></td>
+                                        <td>Fatima Rahman</td>
+                                        <td>Family Law</td>
+                                        <td>$1,200</td>
+                                        <td><span class="badge badge--paid">Paid</span></td>
+                                        <td>Apr 28, 2025</td>
+                                        <td><button class="btn-outline">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>#1021</strong></td>
+                                        <td>James O'Brien</td>
+                                        <td>Corporate Litigation</td>
+                                        <td>$9,500</td>
+                                        <td><span class="badge badge--unpaid">Unpaid</span></td>
+                                        <td>May 15, 2025</td>
+                                        <td><button class="btn-outline">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>#1020</strong></td>
+                                        <td>Sunita Patel</td>
+                                        <td>Labour Dispute</td>
+                                        <td>$3,100</td>
+                                        <td><span class="badge badge--paid">Paid</span></td>
+                                        <td>Apr 22, 2025</td>
+                                        <td><button class="btn-outline">View</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </article>
+            </div>
 
-        </div><!-- /active cases -->
+            <!-- ── ROW 4: Active Cases + Billing Summary ── -->
+            <div class="row g-3 mb-4">
 
-    </main><!-- /main-content -->
+                <!-- Active Cases -->
+                <div class="col-12 col-lg-6">
+                    <div class="section-card">
+                        <div class="section-card__header">
+                            <h2 class="section-card__title">Active Cases</h2>
+                            <div class="section-card__actions">
+                                <select class="filter-select" id="caseFilter">
+                                    <option value="">All Types</option>
+                                    <option value="criminal">Criminal</option>
+                                    <option value="civil">Civil</option>
+                                    <option value="family">Family</option>
+                                </select>
+                                <button class="btn-primary"><i class="bi bi-plus-lg"></i> New</button>
+                            </div>
+                        </div>
 
+                        <div id="caseList">
+                            <div class="case-card" data-type="criminal">
+                                <div class="case-card__header">
+                                    <div class="case-card__title">Mehta vs State of Maharashtra</div>
+                                    <span class="badge badge--high">High Priority</span>
+                                </div>
+                                <div class="case-card__client"><i class="bi bi-person-circle"></i> Arjun Mehta ·
+                                    Criminal Defense</div>
+                                <div class="case-card__assigned-label">Assigned To</div>
+                                <div class="case-card__avatars">
+                                    <div class="avatar avatar--1">SC</div>
+                                    <div class="avatar avatar--2">RK</div>
+                                    <span class="avatar__name">+2 more</span>
+                                </div>
+                            </div>
 
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+                            <div class="case-card" data-type="civil">
+                                <div class="case-card__header">
+                                    <div class="case-card__title">Sharma Property Dispute</div>
+                                    <span class="badge badge--awaiting">Awaiting Docs</span>
+                                </div>
+                                <div class="case-card__client"><i class="bi bi-person-circle"></i> Priya Sharma · Civil
+                                    Law</div>
+                                <div class="case-card__assigned-label">Assigned To</div>
+                                <div class="case-card__avatars">
+                                    <div class="avatar avatar--1">SC</div>
+                                    <span class="avatar__name">Solo</span>
+                                </div>
+                            </div>
 
+                            <div class="case-card" data-type="family">
+                                <div class="case-card__header">
+                                    <div class="case-card__title">Rahman Family Settlement</div>
+                                    <span class="badge badge--paid">Active</span>
+                                </div>
+                                <div class="case-card__client"><i class="bi bi-person-circle"></i> Fatima Rahman ·
+                                    Family Law</div>
+                                <div class="case-card__assigned-label">Assigned To</div>
+                                <div class="case-card__avatars">
+                                    <div class="avatar avatar--1">SC</div>
+                                    <div class="avatar avatar--3">NP</div>
+                                    <span class="avatar__name">+1 more</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Billing Summary -->
+                <div class="col-12 col-lg-6">
+                    <div class="section-card">
+                        <div class="section-card__header">
+                            <h2 class="section-card__title">Billing Summary</h2>
+                            <button class="btn-outline"><i class="bi bi-download"></i> Export</button>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Total Billed</th>
+                                        <th>Collected</th>
+                                        <th>Outstanding</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Arjun Mehta</td>
+                                        <td>$12,400</td>
+                                        <td>$6,600</td>
+                                        <td>$5,800</td>
+                                        <td><span class="badge badge--unpaid">Unpaid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Priya Sharma</td>
+                                        <td>$4,800</td>
+                                        <td>$4,800</td>
+                                        <td>$0</td>
+                                        <td><span class="badge badge--paid">Clear</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fatima Rahman</td>
+                                        <td>$3,200</td>
+                                        <td>$2,000</td>
+                                        <td>$1,200</td>
+                                        <td><span class="badge badge--awaiting">Partial</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>James O'Brien</td>
+                                        <td>$9,500</td>
+                                        <td>$0</td>
+                                        <td>$9,500</td>
+                                        <td><span class="badge badge--high">Overdue</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Revenue Bar Chart -->
+                        <div class="revenue-chart mt-4">
+                            <div class="section-card__title mb-3" style="font-size:13px">Monthly Revenue</div>
+                            <div class="rev-bars" id="revBars">
+                                <!-- Bars injected by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main><!-- /main-content -->
+    </div><!-- /app-wrapper -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="js/main.js"></script>
-
 </body>
 
 </html>
