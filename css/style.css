@@ -1,5 +1,7 @@
 /* ============================================================
    AdvocateGo Dashboard — style.css
+   Author  : Md. Sakib Chowdhury
+   Version : 1.0.0
    ============================================================ */
 
 *,
@@ -65,7 +67,6 @@ body {
     height: 100vh;
 }
 
-/* Logo — image */
 .sidebar-logo {
     padding: 16px 16px 14px;
     border-bottom: 1px solid var(--border);
@@ -80,7 +81,6 @@ body {
     object-position: left;
 }
 
-/* Nav */
 .sidebar-nav {
     padding: 10px 10px 0;
     flex-shrink: 0;
@@ -96,7 +96,6 @@ body {
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
-    /* ← bold */
     transition: background .15s, color .15s;
     margin-bottom: 1px;
 }
@@ -110,7 +109,6 @@ body {
     background: var(--green);
     color: #fff;
     font-weight: 700;
-    /* ← active bold */
 }
 
 .nav-item.active .nav-icon {
@@ -135,7 +133,6 @@ body {
     margin-left: auto !important;
 }
 
-/* Sidebar labels */
 .sb-label {
     font-size: 10px;
     font-weight: 700;
@@ -144,7 +141,6 @@ body {
     padding: 14px 16px 6px;
 }
 
-/* Quick Metrics */
 .sb-metrics {
     display: flex;
     flex-direction: row;
@@ -153,12 +149,6 @@ body {
     border-radius: 10px;
     margin: 0 10px 4px;
     padding: 10px;
-}
-
-.metrics-donut {
-    width: 70px;
-    height: 70px;
-    flex-shrink: 0;
 }
 
 .metrics-donut-img {
@@ -198,7 +188,6 @@ body {
     flex-shrink: 0;
 }
 
-/* Recent Activity */
 .sb-activity {
     padding: 0 10px 6px;
 }
@@ -232,7 +221,6 @@ body {
     font-size: 22px;
 }
 
-/* Quick Actions */
 .sb-quick {
     padding: 0 10px 20px;
     display: flex;
@@ -509,7 +497,6 @@ body {
     color: var(--text);
 }
 
-/* Frame image icons */
 .stat-img {
     width: 58px;
     height: 58px;
@@ -518,19 +505,17 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   THREE-COLUMN ROW
+   GRID ROWS
 ══════════════════════════════════════════ */
 .three-col-row {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
     margin-bottom: 20px;
-    align-items: start;
+    align-items: stretch;
+    /* ← changed from start */
 }
 
-/* ══════════════════════════════════════════
-   TWO-COLUMN ROW
-══════════════════════════════════════════ */
 .two-col-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -547,6 +532,8 @@ body {
     border-radius: var(--radius);
     box-shadow: var(--card-shadow);
     padding: 16px;
+    height: 100%;
+    /* ← added */
 }
 
 .cb-head {
@@ -564,7 +551,6 @@ body {
     color: var(--text);
 }
 
-/* Buttons */
 .btn-mark-done {
     background: var(--green);
     color: #fff;
@@ -653,35 +639,41 @@ body {
 
 /* Progress */
 .progress-wrap {
-    margin-top: 12px;
+    margin-top: 14px;
+    background: #f8faff;
+    border-radius: 12px;
+    padding: 12px 16px 14px;
+    border: 1px solid #eef0f6;
 }
-
 .prog-meta {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 6px;
+    align-items: center;
+    margin-bottom: 8px;
 }
 
-.prog-meta span {
-    font-size: 12px;
-    color: var(--text-muted);
+.prog-meta span:first-child {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a2e;
 }
 
 .prog-count {
-    color: var(--green) !important;
-    font-weight: 600;
+    color: #22c55e !important;
+    font-weight: 700;
+    font-size: 13px;
 }
 
 .prog-track {
-    height: 6px;
-    background: #e5e7eb;
+    height: 10px;
+    background: #e2e8f0;
     border-radius: 99px;
     overflow: hidden;
+    width: 100%;
 }
-
 .prog-fill {
     height: 100%;
-    background: var(--green);
+    background: #22c55e;
     border-radius: 99px;
     transition: width .3s;
 }
@@ -727,11 +719,6 @@ body {
     color: #fff;
 }
 
-.wd-active .wd-num,
-.wd-active .wd-name {
-    color: #fff;
-}
-
 .wd-num {
     font-size: 14px;
     font-weight: 700;
@@ -742,6 +729,10 @@ body {
     font-size: 10px;
     color: var(--text-muted);
     margin-top: 2px;
+}
+
+.wd-active .wd-num {
+    color: #fff;
 }
 
 .wd-active .wd-name {
@@ -772,8 +763,12 @@ body {
     background: var(--orange);
 }
 
+.c-purple {
+    background: var(--purple);
+}
+
 .c-w {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.6);
 }
 
 .cal-time-label {
@@ -782,79 +777,62 @@ body {
     margin: 8px 0 4px;
 }
 
-.cal-event {
-    border-radius: 8px;
-    padding: 10px 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 6px;
-}
-
-.cal-ev-green {
-    background: #dcfce7;
-}
-
-.cal-ev-purple {
-    background: var(--purple-light);
-}
-
-.cal-ev-orange {
-    background: var(--orange-light);
-}
-
+/* ── Calendar Events ── */
 .cal-event-img {
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 12px 14px;
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 8px;
-    background-size: 100% 100%;
-    background-position: center;
-    min-height: 60px;
+    min-height: 64px;
 }
 
-.cal-event-img .cal-ev-title {
-    color: #fff !important;
+.cal-event-img.ev-green {
+    background: linear-gradient(135deg, #22c55e 0%, #4ade80 100%);
 }
 
-.cal-event-img .cal-ev-sub {
-    color: rgba(255, 255, 255, 0.85) !important;
+.cal-event-img.ev-purple {
+    background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
 }
 
-.cal-ev-img-icon {
-    width: 36px;
-    height: 36px;
+.cal-event-img.ev-orange {
+    background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+}
+
+.cal-ev-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cal-ev-circle i {
+    font-size: 18px;
+    color: #fff;
+}
+
+.cal-ev-logo {
+    width: 40px;
+    height: 40px;
     object-fit: contain;
     flex-shrink: 0;
 }
 
-.cal-ev-icon {
-    font-size: 14px;
-    flex-shrink: 0;
-}
-
-.cal-ev-green .cal-ev-icon {
-    color: var(--green);
-}
-
-.cal-ev-purple .cal-ev-icon {
-    color: var(--purple);
-}
-
-.cal-ev-orange .cal-ev-icon {
-    color: var(--orange);
-}
-
 .cal-ev-title {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff !important;
 }
 
 .cal-ev-sub {
     font-size: 11px;
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.85) !important;
+    margin-top: 2px;
 }
 
 /* ══════════════════════════════════════════
@@ -961,11 +939,6 @@ body {
     color: #7c3aed;
 }
 
-.b-active {
-    background: var(--green-light);
-    color: var(--green-dark);
-}
-
 /* ══════════════════════════════════════════
    ACTIVE CASES
 ══════════════════════════════════════════ */
@@ -1051,15 +1024,26 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   RESPONSIVE
+   RESPONSIVE — 4 DEVICES
+   1. Desktop Large  : 1280px+
+   2. Desktop/Laptop : 1024px – 1279px
+   3. Tablet         : 768px  – 1023px
+   4. Mobile         : 0px    – 767px
 ══════════════════════════════════════════ */
-@media (max-width: 1280px) {
+
+/* ── Device 2: Desktop / Laptop (1024–1279px) ── */
+@media (max-width: 1279px) {
     .stat-row {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-@media (max-width: 1024px) {
+/* ── Device 3: Tablet (768–1023px) ── */
+@media (max-width: 1023px) {
+    .stat-row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     .three-col-row {
         grid-template-columns: 1fr 1fr;
     }
@@ -1069,7 +1053,8 @@ body {
     }
 }
 
-@media (max-width: 768px) {
+/* ── Device 4: Mobile (max 767px) ── */
+@media (max-width: 767px) {
     :root {
         --sidebar-w: 240px;
     }
@@ -1088,10 +1073,14 @@ body {
     }
 
     .hamburger {
-        display: flex;
+        display: flex !important;
     }
 
     .three-col-row {
+        grid-template-columns: 1fr;
+    }
+
+    .two-col-row {
         grid-template-columns: 1fr;
     }
 
@@ -1102,10 +1091,46 @@ body {
     .main-content {
         padding: 16px;
     }
+
+    .topbar {
+        padding: 0 12px;
+        gap: 10px;
+    }
+
+    .tb-search {
+        max-width: 200px;
+    }
 }
 
-@media (max-width: 480px) {
+/* ── Mobile Small (max 575px) ── */
+@media (max-width: 575px) {
     .stat-row {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-val {
+        font-size: 22px;
+    }
+
+    .stat-img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .tb-search {
+        max-width: 140px;
+    }
+
+    .tb-name {
+        display: none;
+    }
+
+    .cb-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .page-title {
+        font-size: 18px;
     }
 }

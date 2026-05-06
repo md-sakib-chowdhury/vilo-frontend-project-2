@@ -22,7 +22,6 @@
         <!-- ═══════════════════ SIDEBAR ═══════════════════ -->
         <aside class="sidebar" id="sidebar">
 
-            <!-- LOGO — image থেকে -->
             <div class="sidebar-logo">
                 <img src="assets/logo dark.png" alt="AdvocateGo" class="sidebar-logo-img" />
             </div>
@@ -164,13 +163,12 @@
             <!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
             <main class="main-content">
 
-                <!-- Page Title -->
                 <div class="page-hdr">
                     <h1 class="page-title">Dashboard</h1>
                     <p class="page-sub">Lorem ipsum is dummy text for dummy</p>
                 </div>
 
-                <!-- ── STAT CARDS — Frame images ── -->
+                <!-- ── STAT CARDS ── -->
                 <div class="stat-row">
                     <div class="stat-card">
                         <div>
@@ -209,109 +207,118 @@
                     </div>
                 </div>
 
-                <!-- ── ROW: TASKS DUE TODAY + TODAY'S TO-DOs + CALENDAR ── -->
+                <!-- ── THREE COL: MERGED TASKS CARD + CALENDAR ── -->
                 <div class="three-col-row">
 
-                    <!-- Tasks Due Today -->
-                    <div class="card-box">
-                        <div class="cb-head">
-                            <span class="cb-title">Tasks Due Today</span>
-                            <button class="btn-mark-done"><i class="bi bi-check-circle me-1"></i>Mark as Done</button>
-                        </div>
-                        <ul class="task-list" id="taskList1">
-                            <li class="task-item">
-                                <input type="checkbox" class="task-cb" id="td1" checked />
-                                <label for="td1">
-                                    <span class="t-title">Work with your attorney to conduct.</span>
-                                    <span class="t-time">Jul 13, 2:29 AM</span>
-                                </label>
-                            </li>
-                            <li class="task-item">
-                                <input type="checkbox" class="task-cb" id="td2" />
-                                <label for="td2">
-                                    <span class="t-title">Work with your attorney to conduct.</span>
-                                    <span class="t-time">Jul 13, 2:29 AM</span>
-                                </label>
-                            </li>
-                            <li class="task-item">
-                                <input type="checkbox" class="task-cb" id="td3" />
-                                <label for="td3">
-                                    <span class="t-title">Work with your attorney to conduct.</span>
-                                    <span class="t-time">Jul 13, 2:29 AM</span>
-                                </label>
-                            </li>
-                            <li class="task-item">
-                                <input type="checkbox" class="task-cb" id="td4" />
-                                <label for="td4">
-                                    <span class="t-title">Work with your attorney to conduct.</span>
-                                    <span class="t-time">Jul 13, 2:29 AM</span>
-                                </label>
-                            </li>
-                            <li class="task-item">
-                                <input type="checkbox" class="task-cb" id="td5" />
-                                <label for="td5">
-                                    <span class="t-title">Work with your attorney to conduct.</span>
-                                    <span class="t-time">Jul 13, 2:29 AM</span>
-                                </label>
-                            </li>
-                        </ul>
-                        <div class="progress-wrap">
-                            <div class="prog-meta">
-                                <span>Progress</span>
-                                <span class="prog-count" id="pc1">2 of 5 tasks completed</span>
+                    <!-- Tasks Due Today + Today's To-Do's — ONE CARD spanning 2 cols -->
+                    <div class="card-box" style="grid-column: span 2;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+
+                            <!-- Tasks Due Today -->
+                            <div>
+                                <div class="cb-head">
+                                    <span class="cb-title">Tasks Due Today</span>
+                                    <button class="btn-mark-done"><i class="bi bi-check-circle me-1"></i>Mark as
+                                        Done</button>
+                                </div>
+                                <ul class="task-list" id="taskList1">
+                                    <li class="task-item">
+                                        <input type="checkbox" class="task-cb" id="td1" checked />
+                                        <label for="td1">
+                                            <span class="t-title">Work with your attorney to conduct.</span>
+                                            <span class="t-time">Jul 13, 2:29 AM</span>
+                                        </label>
+                                    </li>
+                                    <li class="task-item">
+                                        <input type="checkbox" class="task-cb" id="td2" />
+                                        <label for="td2">
+                                            <span class="t-title">Work with your attorney to conduct.</span>
+                                            <span class="t-time">Jul 13, 2:29 AM</span>
+                                        </label>
+                                    </li>
+                                    <li class="task-item">
+                                        <input type="checkbox" class="task-cb" id="td3" />
+                                        <label for="td3">
+                                            <span class="t-title">Work with your attorney to conduct.</span>
+                                            <span class="t-time">Jul 13, 2:29 AM</span>
+                                        </label>
+                                    </li>
+                                    <li class="task-item">
+                                        <input type="checkbox" class="task-cb" id="td4" />
+                                        <label for="td4">
+                                            <span class="t-title">Work with your attorney to conduct.</span>
+                                            <span class="t-time">Jul 13, 2:29 AM</span>
+                                        </label>
+                                    </li>
+                                    <li class="task-item">
+                                        <input type="checkbox" class="task-cb" id="td5" />
+                                        <label for="td5">
+                                            <span class="t-title">Work with your attorney to conduct.</span>
+                                            <span class="t-time">Jul 13, 2:29 AM</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                                <div class="progress-wrap">
+                                    <div class="prog-meta">
+                                        <span>Progress</span>
+                                        <span class="prog-count" id="pc1">2 of 5 tasks completed</span>
+                                    </div>
+                                    <div class="prog-track">
+                                        <div class="prog-fill" id="pf1" style="width:40%"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="prog-track">
-                                <div class="prog-fill" id="pf1" style="width:40%"></div>
+
+                            <!-- Today's To-Do's -->
+                            <div>
+                                <div class="cb-head">
+                                    <span class="cb-title">Today's To-Do's</span>
+                                    <button class="btn-mark-done"><i class="bi bi-check-circle me-1"></i>Mark as
+                                        Done</button>
+                                </div>
+                                <ul class="task-list" id="taskList2">
+                                    <li class="task-item">
+                                        <input type="checkbox" class="task-cb" id="tt1" checked />
+                                        <label for="tt1">
+                                            <span class="t-title">Work with your attorney to conduct.</span>
+                                            <span class="t-time">Jul 13, 2:29 AM</span>
+                                        </label>
+                                    </li>
+                                    <li class="task-item">
+                                        <input type="checkbox" class="task-cb" id="tt2" />
+                                        <label for="tt2">
+                                            <span class="t-title">Work with your attorney to conduct.</span>
+                                            <span class="t-time">Jul 13, 2:29 AM</span>
+                                        </label>
+                                    </li>
+                                    <li class="task-item">
+                                        <input type="checkbox" class="task-cb" id="tt3" />
+                                        <label for="tt3">
+                                            <span class="t-title">Work with your attorney to conduct.</span>
+                                            <span class="t-time">Jul 13, 2:29 AM</span>
+                                        </label>
+                                    </li>
+                                    <li class="task-item">
+                                        <input type="checkbox" class="task-cb" id="tt4" />
+                                        <label for="tt4">
+                                            <span class="t-title">Work with your attorney to conduct.</span>
+                                            <span class="t-time">Jul 13, 2:29 AM</span>
+                                        </label>
+                                    </li>
+                                    <li class="task-item">
+                                        <input type="checkbox" class="task-cb" id="tt5" />
+                                        <label for="tt5">
+                                            <span class="t-title">Work with your attorney to conduct.</span>
+                                            <span class="t-time">Jul 13, 2:29 AM</span>
+                                        </label>
+                                    </li>
+                                </ul>
                             </div>
+
                         </div>
                     </div>
 
-                    <!-- Today's To-Do's -->
-                    <div class="card-box">
-                        <div class="cb-head">
-                            <span class="cb-title">Today's To-Do's</span>
-                            <button class="btn-mark-done"><i class="bi bi-check-circle me-1"></i>Mark as Done</button>
-                        </div>
-                        <ul class="task-list" id="taskList2">
-                            <li class="task-item">
-                                <input type="checkbox" class="task-cb" id="tt1" checked />
-                                <label for="tt1">
-                                    <span class="t-title">Work with your attorney to conduct.</span>
-                                    <span class="t-time">Jul 13, 2:29 AM</span>
-                                </label>
-                            </li>
-                            <li class="task-item">
-                                <input type="checkbox" class="task-cb" id="tt2" />
-                                <label for="tt2">
-                                    <span class="t-title">Work with your attorney to conduct.</span>
-                                    <span class="t-time">Jul 13, 2:29 AM</span>
-                                </label>
-                            </li>
-                            <li class="task-item">
-                                <input type="checkbox" class="task-cb" id="tt3" />
-                                <label for="tt3">
-                                    <span class="t-title">Work with your attorney to conduct.</span>
-                                    <span class="t-time">Jul 13, 2:29 AM</span>
-                                </label>
-                            </li>
-                            <li class="task-item">
-                                <input type="checkbox" class="task-cb" id="tt4" />
-                                <label for="tt4">
-                                    <span class="t-title">Work with your attorney to conduct.</span>
-                                    <span class="t-time">Jul 13, 2:29 AM</span>
-                                </label>
-                            </li>
-                            <li class="task-item">
-                                <input type="checkbox" class="task-cb" id="tt5" />
-                                <label for="tt5">
-                                    <span class="t-title">Work with your attorney to conduct.</span>
-                                    <span class="t-time">Jul 13, 2:29 AM</span>
-                                </label>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Calendar / Schedule -->
+                    <!-- Calendar -->
                     <div class="card-box">
                         <div class="cb-head">
                             <span class="cb-title">Today, 07 July</span>
@@ -319,78 +326,99 @@
                         </div>
 
                         <div class="week-strip">
-                            <div class="wd">
+                            <div class="wd" onclick="selectDay(this)">
                                 <div class="wd-num">05</div>
                                 <div class="wd-name">Mon</div>
-                                <div class="wd-dots"><span class="wdd c-green"></span><span
-                                        class="wdd c-blue"></span><span class="wdd c-orange"></span></div>
+                                <div class="wd-dots">
+                                    <span class="wdd c-green"></span>
+                                    <span class="wdd c-blue"></span>
+                                    <span class="wdd c-orange"></span>
+                                </div>
                             </div>
-                            <div class="wd">
+                            <div class="wd" onclick="selectDay(this)">
                                 <div class="wd-num">06</div>
                                 <div class="wd-name">Tue</div>
-                                <div class="wd-dots"><span class="wdd c-green"></span><span
-                                        class="wdd c-blue"></span><span class="wdd c-blue"></span><span
-                                        class="wdd c-orange"></span></div>
+                                <div class="wd-dots">
+                                    <span class="wdd c-green"></span>
+                                    <span class="wdd c-blue"></span>
+                                    <span class="wdd c-blue"></span>
+                                    <span class="wdd c-orange"></span>
+                                </div>
                             </div>
-                            <div class="wd wd-active">
+                            <div class="wd wd-active" onclick="selectDay(this)">
                                 <div class="wd-num">07</div>
                                 <div class="wd-name">Wed</div>
-                                <div class="wd-dots"><span class="wdd c-w"></span><span class="wdd c-w"></span><span
-                                        class="wdd c-w"></span></div>
+                                <div class="wd-dots">
+                                    <span class="wdd c-w"></span>
+                                    <span class="wdd c-w"></span>
+                                    <span class="wdd c-w"></span>
+                                </div>
                             </div>
-                            <div class="wd">
+                            <div class="wd" onclick="selectDay(this)">
                                 <div class="wd-num">08</div>
                                 <div class="wd-name">Thu</div>
-                                <div class="wd-dots"><span class="wdd c-green"></span><span
-                                        class="wdd c-blue"></span><span class="wdd c-orange"></span></div>
+                                <div class="wd-dots">
+                                    <span class="wdd c-green"></span>
+                                    <span class="wdd c-blue"></span>
+                                    <span class="wdd c-orange"></span>
+                                </div>
                             </div>
-                            <div class="wd">
+                            <div class="wd" onclick="selectDay(this)">
                                 <div class="wd-num">09</div>
                                 <div class="wd-name">Fri</div>
-                                <div class="wd-dots"><span class="wdd c-green"></span><span class="wdd c-orange"></span>
+                                <div class="wd-dots">
+                                    <span class="wdd c-green"></span>
+                                    <span class="wdd c-orange"></span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="cal-time-label">08:00 am</div>
+                        <!-- Event 1 — Green (CSS gradient) -->
                         <div class="cal-time-label">09:00 am</div>
-
-                        <div class="cal-event-img"
-                            style="background-image: url('assets/Rectangle 1396.png'); background-size: 100% 100%;">
-                            <img src="assets/Frame n.png" class="cal-ev-img-icon" alt="">
+                        <div class="cal-event-img ev-green">
+                            <div class="cal-ev-circle">
+                                <img src="assets/Frame n.png" alt=""
+                                    style="width: 22px; height: 22px; object-fit: contain;">
+                            </div>
                             <div>
-                                <div class="cal-ev-title" style="color:#fff !important;">Client Meeting</div>
-                                <div class="cal-ev-sub" style="color:rgba(255,255,255,0.85) !important;">Prepare
-                                    evidence for cross examination</div>
+                                <div class="cal-ev-title">Client Meeting</div>
+                                <div class="cal-ev-sub">Prepare evidence for cross examination</div>
                             </div>
                         </div>
 
-                        <div class="cal-time-label">09:00 am</div>
+                        <!-- Event 2 — BG Image -->
+                        <div class="cal-time-label">10:00 am</div>
                         <div class="cal-event-img"
-                            style="background-image: url('assets/Rectangle 1397.png'); background-size: cover;">
-                            <img src="assets/Frame n2.png" class="cal-ev-img-icon" alt="">
+                            style="background-image: url('assets/Rectangle 1397.png'); background-size: 100% 100%;">
+                            <div class="cal-ev-circle">
+                                <img src="assets/Frame n2.png" alt=""
+                                    style="width: 22px; height: 22px; object-fit: contain;">
+                            </div>
                             <div>
-                                <div class="cal-ev-title" style="color:#fff;">Client Meeting</div>
-                                <div class="cal-ev-sub" style="color:rgba(255,255,255,0.85);">Prepare evidence for cross
-                                    examination</div>
+                                <div class="cal-ev-title">Client Meeting</div>
+                                <div class="cal-ev-sub">Prepare evidence for cross examination</div>
                             </div>
                         </div>
 
-                        <div class="cal-time-label">09:00 am</div>
+                        <!-- Event 3 — BG Image -->
+                        <div class="cal-time-label">11:00 am</div>
                         <div class="cal-event-img"
-                            style="background-image: url('assets/Rectangle 1398.png'); background-size: cover;">
-                            <img src="assets/Frame n3.png" class="cal-ev-img-icon" alt="">
+                            style="background-image: url('assets/Rectangle 1398.png'); background-size: 100% 100%;">
+                            <div class="cal-ev-circle">
+                                <img src="assets/Frame n3.png" alt=""
+                                    style="width: 22px; height: 22px; object-fit: contain;">
+                            </div>
                             <div>
-                                <div class="cal-ev-title" style="color:#fff;">Client Meeting</div>
-                                <div class="cal-ev-sub" style="color:rgba(255,255,255,0.85);">Prepare evidence for cross
-                                    examination</div>
+                                <div class="cal-ev-title">Client Meeting</div>
+                                <div class="cal-ev-sub">Prepare evidence for cross examination</div>
                             </div>
                         </div>
+
                     </div>
 
                 </div><!-- /three-col-row -->
 
-                <!-- ── ROW: BILLING OVERVIEW + TASKS & TO-DO ── -->
+                <!-- ── TWO COL: BILLING + TASKS TABLE ── -->
                 <div class="two-col-row">
 
                     <!-- Billing Overview -->
@@ -445,7 +473,7 @@
                         </div>
                     </div>
 
-                    <!-- Tasks & To-Do -->
+                    <!-- Tasks & To-Do Table -->
                     <div class="card-box">
                         <div class="cb-head">
                             <span class="cb-title">Tasks &amp; To-Do</span>
@@ -524,31 +552,23 @@
                     </div>
 
                     <div id="caseList">
-
                         <div class="case-card" data-type="civil">
                             <div class="case-top">
                                 <div>
                                     <div class="case-title">Work with your attorney to conduct.</div>
-                                    <div class="case-client">
-                                        <img src="assets/client.png" class="case-avatar"> Client Name
-                                    </div>
+                                    <div class="case-client"><img src="assets/client.png" class="case-avatar"> Client
+                                        Name</div>
                                 </div>
                                 <span class="badge b-awaiting">Awaiting Docs</span>
                             </div>
                             <div class="case-assigned-row">
                                 <span class="assigned-label">ASSIGNED TO</span>
                                 <div class="assignees">
-                                    <div class="assignee-item">
-                                        <img src="assets/assignee1.png">
-                                        <span>James Ryan</span>
+                                    <div class="assignee-item"><img src="assets/assignee1.png"><span>James Ryan</span>
                                     </div>
-                                    <div class="assignee-item">
-                                        <img src="assets/assignee2.png">
-                                        <span>James Ryan</span>
+                                    <div class="assignee-item"><img src="assets/assignee2.png"><span>James Ryan</span>
                                     </div>
-                                    <div class="assignee-item">
-                                        <img src="assets/assignee3.png">
-                                        <span>James Ryan</span>
+                                    <div class="assignee-item"><img src="assets/assignee3.png"><span>James Ryan</span>
                                     </div>
                                 </div>
                             </div>
@@ -558,26 +578,19 @@
                             <div class="case-top">
                                 <div>
                                     <div class="case-title">Work with your attorney to conduct.</div>
-                                    <div class="case-client">
-                                        <img src="assets/client.png" class="case-avatar"> Client Name
-                                    </div>
+                                    <div class="case-client"><img src="assets/client.png" class="case-avatar"> Client
+                                        Name</div>
                                 </div>
                                 <span class="badge b-awaiting">Awaiting Docs</span>
                             </div>
                             <div class="case-assigned-row">
                                 <span class="assigned-label">ASSIGNED TO</span>
                                 <div class="assignees">
-                                    <div class="assignee-item">
-                                        <img src="assets/assignee1.png">
-                                        <span>James Ryan</span>
+                                    <div class="assignee-item"><img src="assets/assignee1.png"><span>James Ryan</span>
                                     </div>
-                                    <div class="assignee-item">
-                                        <img src="assets/assignee2.png">
-                                        <span>James Ryan</span>
+                                    <div class="assignee-item"><img src="assets/assignee2.png"><span>James Ryan</span>
                                     </div>
-                                    <div class="assignee-item">
-                                        <img src="assets/assignee3.png">
-                                        <span>James Ryan</span>
+                                    <div class="assignee-item"><img src="assets/assignee3.png"><span>James Ryan</span>
                                     </div>
                                 </div>
                             </div>
@@ -587,31 +600,23 @@
                             <div class="case-top">
                                 <div>
                                     <div class="case-title">Work with your attorney to conduct.</div>
-                                    <div class="case-client">
-                                        <img src="assets/client.png" class="case-avatar"> Client Name
-                                    </div>
+                                    <div class="case-client"><img src="assets/client.png" class="case-avatar"> Client
+                                        Name</div>
                                 </div>
                                 <span class="badge b-awaiting">Awaiting Docs</span>
                             </div>
                             <div class="case-assigned-row">
                                 <span class="assigned-label">ASSIGNED TO</span>
                                 <div class="assignees">
-                                    <div class="assignee-item">
-                                        <img src="assets/assignee1.png">
-                                        <span>James Ryan</span>
+                                    <div class="assignee-item"><img src="assets/assignee1.png"><span>James Ryan</span>
                                     </div>
-                                    <div class="assignee-item">
-                                        <img src="assets/assignee2.png">
-                                        <span>James Ryan</span>
+                                    <div class="assignee-item"><img src="assets/assignee2.png"><span>James Ryan</span>
                                     </div>
-                                    <div class="assignee-item">
-                                        <img src="assets/assignee3.png">
-                                        <span>James Ryan</span>
+                                    <div class="assignee-item"><img src="assets/assignee3.png"><span>James Ryan</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
