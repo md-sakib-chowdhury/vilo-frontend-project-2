@@ -1,284 +1,217 @@
-/**
- * AdvocateGo Dashboard — Main JavaScript
- * Author  : Md. Sakib Chowdhury
- * Stack   : Vanilla JavaScript (No jQuery / No Framework)
- * Version : 1.0.0
- *
- * Sections:
- *  1. Dark / Light Mode Toggle  (localStorage persisted)
- *  2. Sidebar Toggle            (mobile responsive)
- *  3. Task Checkbox Handler     (done state + progress bar)
- *  4. Table Search / Filter     (billing & task tables)
- *  5. Priority Filter           (task table dropdown)
- *  6. Week Day Selector         (calendar)
- *  7. Active Nav Highlight
- *  8. Init
- */
+/* ============================================================
+   AdvocateGo Dashboard — Vanilla JavaScript
+   Author  : Md. Sakib Chowdhury
+   Features: Sidebar Toggle, Dark/Light Mode, Table Search/Filter,
+             Task Progress, Case Filter, Revenue Chart
+   ============================================================ */
 
-"use strict";
+document.addEventListener('DOMContentLoaded', () => {
 
-/* ── 1. DARK / LIGHT MODE ──────────────────────────────────── */
-const ThemeManager = (() => {
-    const STORAGE_KEY = "advocatego_theme";
-    const DARK = "dark";
-    const LIGHT = "light";
+    /* ── 1. SIDEBAR TOGGLE (Mobile) ─────────────────────────── */
+    const sidebar = document.getElementById('sidebar');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
 
-    const html = document.documentElement;
-    const toggleBtn = document.getElementById("themeToggle");
-    const toggleIcon = document.getElementById("themeIcon");
-
-    function apply(theme) {
-        html.setAttribute("data-theme", theme);
-        localStorage.setItem(STORAGE_KEY, theme);
-
-        if (toggleIcon) {
-            toggleIcon.className = theme === DARK
-                ? "bi bi-sun-fill"
-                : "bi bi-moon-stars-fill";
-        }
-        if (toggleBtn) {
-            toggleBtn.setAttribute("aria-label",
-                theme === DARK ? "Switch to light mode" : "Switch to dark mode"
-            );
-        }
-
-        /* SVG donut text colour */
-        const donutText = document.getElementById("donutPct");
-        if (donutText) {
-            donutText.setAttribute("fill", theme === DARK ? "#e2e8f0" : "#1a1a2e");
-        }
+    function openSidebar() {
+        sidebar.classList.add('is-open');
+        sidebarOverlay.classList.add('is-visible');
+        document.body.style.overflow = 'hidden';
     }
 
-    function toggle() {
-        const current = html.getAttribute("data-theme") || LIGHT;
-        apply(current === DARK ? LIGHT : DARK);
+    function closeSidebar() {
+        sidebar.classList.remove('is-open');
+        sidebarOverlay.classList.remove('is-visible');
+        document.body.style.overflow = '';
     }
 
-    function init() {
-        const saved = localStorage.getItem(STORAGE_KEY) || LIGHT;
-        apply(saved);
-        if (toggleBtn) toggleBtn.addEventListener("click", toggle);
-    }
+    hamburgerBtn.addEventListener('click', () => {
+        sidebar.classList.contains('is-open') ? closeSidebar() : openSidebar();
+    });
 
-    return { init };
-})();
+    sidebarOverlay.addEventListener('click', closeSidebar);
 
-
-/* ── 2. SIDEBAR TOGGLE ─────────────────────────────────────── */
-const SidebarManager = (() => {
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("sidebarOverlay");
-    const hamburger = document.getElementById("hamburgerBtn");
-
-    function open() {
-        sidebar?.classList.add("is-open");
-        overlay?.classList.add("is-visible");
-        document.body.style.overflow = "hidden";
-    }
-
-    function close() {
-        sidebar?.classList.remove("is-open");
-        overlay?.classList.remove("is-visible");
-        document.body.style.overflow = "";
-    }
-
-    function toggle() {
-        sidebar?.classList.contains("is-open") ? close() : open();
-    }
-
-    function init() {
-        hamburger?.addEventListener("click", toggle);
-        overlay?.addEventListener("click", close);
-
-        /* Close on ESC */
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") close();
+    // Close sidebar on nav item click (mobile)
+    document.querySelectorAll('.sidebar__nav-item').forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth < 768) closeSidebar();
         });
+    });
 
-        /* Close on resize to desktop */
-        window.addEventListener("resize", () => {
-            if (window.innerWidth > 991) close();
-        });
+    // Close sidebar on resize if desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) closeSidebar();
+    });
+
+    /* ── 2. DARK / LIGHT MODE TOGGLE (with localStorage) ────── */
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const htmlEl = document.documentElement;
+
+    function applyTheme(theme) {
+        htmlEl.setAttribute('data-theme', theme);
+        if (theme === 'dark') {
+            themeIcon.classList.replace('bi-moon-stars-fill', 'bi-sun-fill');
+            themeToggle.title = 'Switch to Light Mode';
+        } else {
+            themeIcon.classList.replace('bi-sun-fill', 'bi-moon-stars-fill');
+            themeToggle.title = 'Switch to Dark Mode';
+        }
+        localStorage.setItem('advocatego-theme', theme);
     }
 
-    return { init, close };
-})();
+    // Load saved theme
+    const savedTheme = localStorage.getItem('advocatego-theme') || 'light';
+    applyTheme(savedTheme);
 
+    themeToggle.addEventListener('click', () => {
+        const current = htmlEl.getAttribute('data-theme');
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
 
-/* ── 3. TASK CHECKBOX + PROGRESS ───────────────────────────── */
-const TaskManager = (() => {
-    const TASKS_WRAPPER = "tasksDueList";
-    const PROGRESS_TEXT = "progressText";
-    const PROGRESS_FILL = "progressFill";
+    /* ── 3. TASK CHECKBOXES + PROGRESS BAR ──────────────────── */
+    const taskItems = document.querySelectorAll('.task-item');
+    const progressFill = document.getElementById('progressFill');
+    const progressCount = document.getElementById('progressCount');
 
     function updateProgress() {
-        const wrapper = document.getElementById(TASKS_WRAPPER);
-        if (!wrapper) return;
+        const total = taskItems.length;
+        let done = 0;
 
-        const checkboxes = wrapper.querySelectorAll(".task-item__cb");
-        const total = checkboxes.length;
-        const done = Array.from(checkboxes).filter(cb => cb.checked).length;
-        const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-
-        const textEl = document.getElementById(PROGRESS_TEXT);
-        const fillEl = document.getElementById(PROGRESS_FILL);
-
-        if (textEl) textEl.textContent = `${done} of ${total} tasks completed`;
-        if (fillEl) fillEl.style.width = `${pct}%`;
-    }
-
-    function syncDoneClass(checkbox) {
-        const item = checkbox.closest(".task-item");
-        if (!item) return;
-        item.classList.toggle("is-done", checkbox.checked);
-    }
-
-    function init() {
-        /* Handle all task checkboxes (both panels) */
-        document.querySelectorAll(".task-item__cb").forEach(cb => {
-            /* Sync initial state */
-            syncDoneClass(cb);
-
-            cb.addEventListener("change", () => {
-                syncDoneClass(cb);
-                updateProgress();
-            });
+        taskItems.forEach(item => {
+            const cb = item.querySelector('.task-item__cb');
+            if (cb.checked) {
+                item.classList.add('is-done');
+                done++;
+            } else {
+                item.classList.remove('is-done');
+            }
         });
 
-        /* Initial progress render */
-        updateProgress();
+        const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+        progressFill.style.width = pct + '%';
+        progressCount.textContent = `${done} / ${total} done`;
     }
 
-    return { init };
-})();
+    taskItems.forEach(item => {
+        const cb = item.querySelector('.task-item__cb');
+        cb.addEventListener('change', updateProgress);
+    });
 
+    // Initial state
+    updateProgress();
 
-/* ── 4. TABLE SEARCH / FILTER ──────────────────────────────── */
-const TableFilter = (() => {
-    /**
-     * Attach live search to a table.
-     * @param {string} inputId   — id of <input> search field
-     * @param {string} tableId   — id of <table>
-     * @param {number[]} cols    — column indexes to search (0-based), omit = all
-     */
-    function attach(inputId, tableId, cols = []) {
-        const input = document.getElementById(inputId);
-        const table = document.getElementById(tableId);
-        if (!input || !table) return;
+    /* ── 4. INVOICE TABLE SEARCH + FILTER ───────────────────── */
+    const invoiceSearch = document.getElementById('invoiceSearch');
+    const invoiceFilter = document.getElementById('invoiceFilter');
+    const invoiceRows = document.querySelectorAll('#invoiceTableBody tr');
 
-        input.addEventListener("input", () => {
-            const query = input.value.trim().toLowerCase();
-            const rows = table.querySelectorAll("tbody tr");
-            let visible = 0;
+    function filterInvoices() {
+        const query = invoiceSearch.value.toLowerCase().trim();
+        const statusVal = invoiceFilter.value.toLowerCase();
+        let visibleCount = 0;
 
-            rows.forEach(row => {
-                if (row.classList.contains("no-results")) return;
+        invoiceRows.forEach(row => {
+            if (row.classList.contains('no-results')) return;
 
-                const cells = row.querySelectorAll("td");
-                const text = cols.length
-                    ? cols.map(i => cells[i]?.textContent || "").join(" ").toLowerCase()
-                    : row.textContent.toLowerCase();
+            const text = row.textContent.toLowerCase();
+            const badge = row.querySelector('.badge');
+            const status = badge ? badge.textContent.toLowerCase() : '';
 
-                const match = text.includes(query);
-                row.style.display = match ? "" : "none";
-                if (match) visible++;
-            });
+            const matchText = query === '' || text.includes(query);
+            const matchStatus = statusVal === '' || status.includes(statusVal);
 
-            /* Show / hide no-results row */
-            let noResultRow = table.querySelector("tr.no-results");
-            if (!visible && query) {
-                if (!noResultRow) {
-                    const colspan = table.querySelectorAll("thead th").length;
-                    noResultRow = document.createElement("tr");
-                    noResultRow.className = "no-results";
-                    noResultRow.innerHTML =
-                        `<td colspan="${colspan}">No results for "<strong>${query}</strong>"</td>`;
-                    table.querySelector("tbody").appendChild(noResultRow);
-                } else {
-                    noResultRow.style.display = "";
-                    noResultRow.querySelector("td").innerHTML =
-                        `No results for "<strong>${query}</strong>"`;
-                }
-            } else if (noResultRow) {
-                noResultRow.style.display = "none";
+            if (matchText && matchStatus) {
+                row.style.display = '';
+                visibleCount++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        // Show "no results" row
+        const noRow = document.querySelector('#invoiceTableBody .no-results');
+        if (noRow) {
+            noRow.style.display = visibleCount === 0 ? '' : 'none';
+        } else if (visibleCount === 0) {
+            const tr = document.createElement('tr');
+            tr.classList.add('no-results');
+            tr.innerHTML = `<td colspan="7">No invoices match your search.</td>`;
+            document.getElementById('invoiceTableBody').appendChild(tr);
+        }
+    }
+
+    invoiceSearch.addEventListener('input', filterInvoices);
+    invoiceFilter.addEventListener('change', filterInvoices);
+
+    /* ── 5. CASE FILTER ──────────────────────────────────────── */
+    const caseFilter = document.getElementById('caseFilter');
+    const caseCards = document.querySelectorAll('.case-card');
+
+    caseFilter.addEventListener('change', () => {
+        const val = caseFilter.value.toLowerCase();
+        caseCards.forEach(card => {
+            const type = card.getAttribute('data-type') || '';
+            card.style.display = (val === '' || type === val) ? '' : 'none';
+        });
+    });
+
+    /* ── 6. REVENUE BAR CHART (Vanilla JS) ───────────────────── */
+    const revData = [
+        { month: 'Jan', value: 42 },
+        { month: 'Feb', value: 58 },
+        { month: 'Mar', value: 51 },
+        { month: 'Apr', value: 73 },
+        { month: 'May', value: 84 },
+        { month: 'Jun', value: 69 },
+        { month: 'Jul', value: 91 },
+        { month: 'Aug', value: 78 },
+        { month: 'Sep', value: 88 },
+        { month: 'Oct', value: 65 },
+        { month: 'Nov', value: 72 },
+        { month: 'Dec', value: 95 },
+    ];
+
+    const maxVal = Math.max(...revData.map(d => d.value));
+    const revBars = document.getElementById('revBars');
+
+    if (revBars) {
+        revData.forEach(d => {
+            const heightPct = (d.value / maxVal) * 100;
+            const wrap = document.createElement('div');
+            wrap.className = 'rev-bar-wrap';
+            wrap.innerHTML = `
+        <div class="rev-bar" style="height:${heightPct}%" title="$${d.value}k"></div>
+        <span class="rev-label">${d.month}</span>
+      `;
+            revBars.appendChild(wrap);
+        });
+    }
+
+    /* ── 7. WEEK DAY SELECTOR ────────────────────────────────── */
+    document.querySelectorAll('.week-day').forEach(day => {
+        day.addEventListener('click', () => {
+            document.querySelectorAll('.week-day').forEach(d => d.classList.remove('is-active'));
+            day.classList.add('is-active');
+        });
+    });
+
+    /* ── 8. GLOBAL SEARCH (visual feedback only) ─────────────── */
+    const globalSearch = document.getElementById('globalSearch');
+    if (globalSearch) {
+        globalSearch.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                globalSearch.value = '';
+                globalSearch.blur();
             }
         });
     }
 
-    function init() {
-        attach("billingSearch", "billingTable", [1, 3]);   /* NAME + STATUS */
-        attach("taskSearch", "taskTable", [1, 2, 4]); /* TITLE + CLIENT + PRIORITY */
-    }
-
-    return { init };
-})();
-
-
-/* ── 5. PRIORITY FILTER ────────────────────────────────────── */
-const PriorityFilter = (() => {
-    function init() {
-        const select = document.getElementById("priorityFilter");
-        if (!select) return;
-
-        select.addEventListener("change", () => {
-            const val = select.value.toLowerCase();
-            const rows = document.querySelectorAll("#taskTable tbody tr");
-
-            rows.forEach(row => {
-                if (row.classList.contains("no-results")) return;
-                if (!val) { row.style.display = ""; return; }
-
-                const priorityCell = row.querySelectorAll("td")[4];
-                const match = priorityCell?.textContent.toLowerCase().includes(val);
-                row.style.display = match ? "" : "none";
-            });
+    /* ── 9. SIDEBAR NAV ACTIVE STATE ─────────────────────────── */
+    document.querySelectorAll('.sidebar__nav-item').forEach(item => {
+        item.addEventListener('click', function () {
+            document.querySelectorAll('.sidebar__nav-item').forEach(i => i.classList.remove('is-active'));
+            this.classList.add('is-active');
         });
-    }
+    });
 
-    return { init };
-})();
-
-
-/* ── 6. WEEK DAY SELECTOR ──────────────────────────────────── */
-const CalendarManager = (() => {
-    function init() {
-        const days = document.querySelectorAll(".week-day");
-        days.forEach(day => {
-            day.addEventListener("click", () => {
-                days.forEach(d => d.classList.remove("is-active"));
-                day.classList.add("is-active");
-            });
-        });
-    }
-
-    return { init };
-})();
-
-
-/* ── 7. ACTIVE NAV HIGHLIGHT ───────────────────────────────── */
-const NavManager = (() => {
-    function init() {
-        const items = document.querySelectorAll(".sidebar__nav-item");
-        items.forEach(item => {
-            item.addEventListener("click", () => {
-                items.forEach(n => n.classList.remove("is-active"));
-                item.classList.add("is-active");
-                SidebarManager.close();
-            });
-        });
-    }
-
-    return { init };
-})();
-
-
-/* ── 8. INIT ───────────────────────────────────────────────── */
-document.addEventListener("DOMContentLoaded", () => {
-    ThemeManager.init();
-    SidebarManager.init();
-    TaskManager.init();
-    TableFilter.init();
-    PriorityFilter.init();
-    CalendarManager.init();
-    NavManager.init();
 });
