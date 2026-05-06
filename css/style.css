@@ -1,6 +1,5 @@
 /* ============================================================
    AdvocateGo Dashboard — style.css
-   Pixel-perfect match to Figma design
    ============================================================ */
 
 *,
@@ -23,7 +22,7 @@
     --purple-light: #f3e8ff;
     --red: #ef4444;
     --red-light: #fee2e2;
-    --sidebar-w: 220px;
+    --sidebar-w: 260px;
     --topbar-h: 60px;
     --bg: #f4f6f9;
     --white: #ffffff;
@@ -44,7 +43,6 @@ body {
     overflow-x: hidden;
 }
 
-/* ── APP WRAPPER ── */
 .app-wrapper {
     display: flex;
     min-height: 100vh;
@@ -67,35 +65,19 @@ body {
     height: 100vh;
 }
 
-/* Logo */
+/* Logo — image */
 .sidebar-logo {
-    padding: 18px 16px 12px;
+    padding: 16px 16px 14px;
     border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
 }
 
-.logo-text {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: .5px;
-}
-
-.logo-black {
-    color: #111;
-}
-
-.logo-green {
-    color: var(--green);
-}
-
-.logo-sub {
-    font-size: 10px;
-    color: var(--text-muted);
-    margin-top: 2px;
-}
-
-.logo-brand {
-    font-weight: 700;
-    color: var(--green);
+.sidebar-logo-img {
+    height: 40px;
+    width: 160px;
+    object-fit: contain;
+    object-position: left;
 }
 
 /* Nav */
@@ -110,10 +92,11 @@ body {
     gap: 9px;
     padding: 8px 10px;
     border-radius: 8px;
-    color: var(--text-muted);
+    color: #374151;
     text-decoration: none;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
+    /* ← bold */
     transition: background .15s, color .15s;
     margin-bottom: 1px;
 }
@@ -126,7 +109,8 @@ body {
 .nav-item.active {
     background: var(--green);
     color: #fff;
-    font-weight: 600;
+    font-weight: 700;
+    /* ← active bold */
 }
 
 .nav-item.active .nav-icon {
@@ -137,11 +121,14 @@ body {
     width: 18px;
     text-align: center;
     font-size: 14px;
-    color: #9ca3af;
+    color: #6b7280;
 }
 
-.ni-active {
-    color: #fff !important;
+.nav-active-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .ms-auto {
@@ -176,6 +163,13 @@ body {
     flex-shrink: 0;
 }
 
+.metrics-donut-img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
 .metrics-list {
     list-style: none;
     padding: 0;
@@ -185,13 +179,14 @@ body {
 
 .metrics-list li {
     display: flex;
-    align-items: flex-start;
-    gap: 5px;
-    font-size: 11px;
-    color: var(--text);
-    font-weight: 500;
-    margin-bottom: 6px;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: #1a1a2e;
+    font-weight: 600;
+    margin-bottom: 7px;
     line-height: 1.3;
+    white-space: nowrap;
 }
 
 .metrics-list li:last-child {
@@ -199,11 +194,10 @@ body {
 }
 
 .ml-dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     flex-shrink: 0;
-    margin-top: 3px;
 }
 
 /* Recent Activity */
@@ -315,7 +309,7 @@ body {
     min-width: 0;
 }
 
-/* ── TOPBAR ── */
+/* TOPBAR */
 .topbar {
     height: var(--topbar-h);
     background: var(--white);
@@ -444,7 +438,7 @@ body {
     font-weight: 600;
 }
 
-/* ── MAIN CONTENT ── */
+/* MAIN CONTENT */
 .main-content {
     padding: 24px 24px 40px;
     flex: 1;
@@ -477,7 +471,7 @@ body {
 
 .stat-card {
     border-radius: var(--radius);
-    padding: 16px;
+    padding: 16px 18px;
     box-shadow: var(--card-shadow);
     display: flex;
     align-items: center;
@@ -485,25 +479,24 @@ body {
     gap: 10px;
 }
 
-/* Each card gets its own background color like Figma */
 .stat-card:nth-child(1) {
-    background: #e8f8f0;
+    background: #eafaf2;
 }
 
 .stat-card:nth-child(2) {
-    background: #e8f0fd;
+    background: #eaf0fd;
 }
 
 .stat-card:nth-child(3) {
-    background: #fff4e6;
+    background: #fff7ec;
 }
 
 .stat-card:nth-child(4) {
-    background: #f0e8ff;
+    background: #f3eeff;
 }
 
 .stat-card:nth-child(5) {
-    background: #ffe8e8;
+    background: #ffeaea;
 }
 
 .stat-label {
@@ -513,49 +506,21 @@ body {
 }
 
 .stat-val {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 700;
     color: var(--text);
 }
 
-.stat-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
+/* Frame image icons */
+.stat-img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
     flex-shrink: 0;
 }
 
-.si-green {
-    background: #b7efd4;
-    color: var(--green);
-}
-
-.si-blue {
-    background: #bdd5fb;
-    color: var(--blue);
-}
-
-.si-orange {
-    background: #ffd9a8;
-    color: var(--orange);
-}
-
-.si-purple {
-    background: #ddc4fb;
-    color: var(--purple);
-}
-
-.si-red {
-    background: #ffc4c4;
-    color: var(--red);
-}
-
 /* ══════════════════════════════════════════
-   THREE-COLUMN ROW (Tasks + Calendar)
+   THREE-COLUMN ROW
 ══════════════════════════════════════════ */
 .three-col-row {
     display: grid;
@@ -566,7 +531,7 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   TWO-COLUMN ROW (Billing + Tasks)
+   TWO-COLUMN ROW
 ══════════════════════════════════════════ */
 .two-col-row {
     display: grid;
@@ -724,7 +689,7 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   CALENDAR / SCHEDULE
+   CALENDAR
 ══════════════════════════════════════════ */
 .week-toggle {
     display: flex;
@@ -892,7 +857,7 @@ body {
 }
 
 .data-table td {
-    padding: 10px 10px;
+    padding: 10px;
     border-bottom: 1px solid #f3f4f6;
     color: var(--text);
     vertical-align: middle;
@@ -921,7 +886,6 @@ body {
     cursor: pointer;
 }
 
-/* Filter select */
 .filter-sel {
     border: 1px solid var(--border);
     border-radius: 6px;
