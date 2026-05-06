@@ -476,7 +476,6 @@ body {
 }
 
 .stat-card {
-    background: var(--white);
     border-radius: var(--radius);
     padding: 16px;
     box-shadow: var(--card-shadow);
@@ -484,6 +483,27 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 10px;
+}
+
+/* Each card gets its own background color like Figma */
+.stat-card:nth-child(1) {
+    background: #e8f8f0;
+}
+
+.stat-card:nth-child(2) {
+    background: #e8f0fd;
+}
+
+.stat-card:nth-child(3) {
+    background: #fff4e6;
+}
+
+.stat-card:nth-child(4) {
+    background: #f0e8ff;
+}
+
+.stat-card:nth-child(5) {
+    background: #ffe8e8;
 }
 
 .stat-label {
@@ -510,27 +530,27 @@ body {
 }
 
 .si-green {
-    background: var(--green-light);
+    background: #b7efd4;
     color: var(--green);
 }
 
 .si-blue {
-    background: var(--blue-light);
+    background: #bdd5fb;
     color: var(--blue);
 }
 
 .si-orange {
-    background: var(--orange-light);
+    background: #ffd9a8;
     color: var(--orange);
 }
 
 .si-purple {
-    background: var(--purple-light);
+    background: #ddc4fb;
     color: var(--purple);
 }
 
 .si-red {
-    background: var(--red-light);
+    background: #ffc4c4;
     color: var(--red);
 }
 
