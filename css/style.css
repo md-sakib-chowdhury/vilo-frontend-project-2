@@ -1084,13 +1084,18 @@ body {
 /* ══════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
 
+/* ── Laptop (1024–1279px) ── */
 @media (max-width: 1279px) {
     .stat-row {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
+/* ── Tablet landscape (768–1023px) ── */
 @media (max-width: 1023px) {
     .stat-row {
         grid-template-columns: repeat(3, 1fr);
@@ -1100,11 +1105,16 @@ body {
         grid-template-columns: 1fr 1fr;
     }
 
+    .three-col-row .card-box[style*="grid-column"] {
+        grid-column: span 2 !important;
+    }
+
     .two-col-row {
         grid-template-columns: 1fr;
     }
 }
 
+/* ── Mobile (max 767px) ── */
 @media (max-width: 767px) {
     :root {
         --sidebar-w: 240px;
@@ -1129,8 +1139,24 @@ body {
         display: flex !important;
     }
 
+    /* three-col-row সব single column */
     .three-col-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+    }
+
+    /* span 2 card mobile-এ full width */
+    .three-col-row .card-box[style*="grid-column"] {
+        grid-column: span 1 !important;
+    }
+
+    /* merged card ভেতরের 2-col grid → single col */
+    .three-col-row .card-box>div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* progress bar span fix */
+    .three-col-row .card-box>div>div[style*="grid-column: span 2"] {
+        grid-column: span 1 !important;
     }
 
     .two-col-row {
@@ -1153,11 +1179,21 @@ body {
     .tb-search {
         max-width: 200px;
     }
+
+    .table-wrap {
+        -webkit-overflow-scrolling: touch;
+    }
 }
 
+/* ── Small mobile (max 575px) ── */
 @media (max-width: 575px) {
+    :root {
+        --topbar-h: 54px;
+    }
+
     .stat-row {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 
     .stat-val {
@@ -1169,12 +1205,21 @@ body {
         height: 44px;
     }
 
+    .stat-card {
+        padding: 12px 14px;
+    }
+
     .tb-search {
         max-width: 140px;
     }
 
     .tb-name {
         display: none;
+    }
+
+    .tb-icon-btn {
+        width: 36px;
+        height: 36px;
     }
 
     .cb-head {
@@ -1185,8 +1230,36 @@ body {
     .page-title {
         font-size: 18px;
     }
+
+    .main-content {
+        padding: 12px;
+    }
+
+    .card-box {
+        padding: 12px;
+    }
+
+    .data-table {
+        min-width: 420px;
+    }
 }
 
+/* ── Touch device tap targets ── */
+@media (hover: none) and (pointer: coarse) {
+    .nav-item {
+        min-height: 44px;
+    }
+
+    .qa-btn {
+        min-height: 44px;
+    }
+
+    .task-cb,
+    .task-cb-sm {
+        width: 20px;
+        height: 20px;
+    }
+}
 /* ══════════════════════════════════════════
    TOPBAR PNG ICONS
 ══════════════════════════════════════════ */
