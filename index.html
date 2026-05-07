@@ -28,7 +28,7 @@
 
             <nav class="sidebar-nav">
                 <a href="#" class="nav-item active">
-                    <img src="assets/Frame .png" class="nav-active-icon" alt="">
+                    <span class="nav-icon"><i class="bi bi-house-door"></i></span>
                     Dashboard
                 </a>
                 <a href="#" class="nav-item">
@@ -210,7 +210,6 @@
                 <!-- ── THREE COL: MERGED TASKS CARD + CALENDAR ── -->
                 <div class="three-col-row">
 
-                    <!-- Tasks Due Today + Today's To-Do's — ONE CARD spanning 2 cols -->
                     <div class="card-box" style="grid-column: span 2;">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
 
@@ -306,7 +305,6 @@
                                 </ul>
                             </div>
 
-                            <!-- ✅ Progress bar — full width spanning both columns -->
                             <div style="grid-column: span 2;">
                                 <div class="progress-wrap">
                                     <div class="prog-meta">
@@ -333,51 +331,36 @@
                             <div class="wd" onclick="selectDay(this)">
                                 <div class="wd-num">05</div>
                                 <div class="wd-name">Mon</div>
-                                <div class="wd-dots">
-                                    <span class="wdd c-green"></span>
-                                    <span class="wdd c-blue"></span>
-                                    <span class="wdd c-orange"></span>
-                                </div>
+                                <div class="wd-dots"><span class="wdd c-green"></span><span
+                                        class="wdd c-blue"></span><span class="wdd c-orange"></span></div>
                             </div>
                             <div class="wd" onclick="selectDay(this)">
                                 <div class="wd-num">06</div>
                                 <div class="wd-name">Tue</div>
-                                <div class="wd-dots">
-                                    <span class="wdd c-green"></span>
-                                    <span class="wdd c-blue"></span>
-                                    <span class="wdd c-blue"></span>
-                                    <span class="wdd c-orange"></span>
-                                </div>
+                                <div class="wd-dots"><span class="wdd c-green"></span><span
+                                        class="wdd c-blue"></span><span class="wdd c-blue"></span><span
+                                        class="wdd c-orange"></span></div>
                             </div>
                             <div class="wd wd-active" onclick="selectDay(this)">
                                 <div class="wd-num">07</div>
                                 <div class="wd-name">Wed</div>
-                                <div class="wd-dots">
-                                    <span class="wdd c-w"></span>
-                                    <span class="wdd c-w"></span>
-                                    <span class="wdd c-w"></span>
-                                </div>
+                                <div class="wd-dots"><span class="wdd c-w"></span><span class="wdd c-w"></span><span
+                                        class="wdd c-w"></span></div>
                             </div>
                             <div class="wd" onclick="selectDay(this)">
                                 <div class="wd-num">08</div>
                                 <div class="wd-name">Thu</div>
-                                <div class="wd-dots">
-                                    <span class="wdd c-green"></span>
-                                    <span class="wdd c-blue"></span>
-                                    <span class="wdd c-orange"></span>
-                                </div>
+                                <div class="wd-dots"><span class="wdd c-green"></span><span
+                                        class="wdd c-blue"></span><span class="wdd c-orange"></span></div>
                             </div>
                             <div class="wd" onclick="selectDay(this)">
                                 <div class="wd-num">09</div>
                                 <div class="wd-name">Fri</div>
-                                <div class="wd-dots">
-                                    <span class="wdd c-green"></span>
-                                    <span class="wdd c-orange"></span>
+                                <div class="wd-dots"><span class="wdd c-green"></span><span class="wdd c-orange"></span>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Event 1 — Green (CSS gradient) -->
                         <div class="cal-time-label">09:00 am</div>
                         <div class="cal-event-img ev-green">
                             <div class="cal-ev-circle">
@@ -390,7 +373,6 @@
                             </div>
                         </div>
 
-                        <!-- Event 2 — BG Image -->
                         <div class="cal-time-label">10:00 am</div>
                         <div class="cal-event-img"
                             style="background-image: url('assets/Rectangle 1397.png'); background-size: 100% 100%;">
@@ -404,7 +386,6 @@
                             </div>
                         </div>
 
-                        <!-- Event 3 — BG Image -->
                         <div class="cal-time-label">11:00 am</div>
                         <div class="cal-event-img"
                             style="background-image: url('assets/Rectangle 1398.png'); background-size: 100% 100%;">
@@ -417,7 +398,6 @@
                                 <div class="cal-ev-sub">Prepare evidence for cross examination</div>
                             </div>
                         </div>
-
                     </div>
 
                 </div><!-- /three-col-row -->
