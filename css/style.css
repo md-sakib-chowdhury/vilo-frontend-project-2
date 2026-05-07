@@ -1,13 +1,7 @@
 /* ============================================================
    AdvocateGo Dashboard — style.css
    Author  : Md. Sakib Chowdhury
-   Version : 2.0.0 — Fully Responsive
-   Breakpoints:
-     Mobile      : < 576px
-     Tablet      : 576px – 767px
-     Mini Laptop : 768px – 1023px
-     14" Laptop  : 1024px – 1279px
-     Desktop     : 1280px+
+   Version : 1.3.0
    ============================================================ */
 
 *,
@@ -63,17 +57,12 @@ body {
 
 .sidebar {
     width: var(--sidebar-w);
-    min-height: 100vh;
     background: var(--white);
     border-right: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     overflow: visible;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
 }
 
 .sidebar-logo {
@@ -81,7 +70,6 @@ body {
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
-    flex-shrink: 0;
 }
 
 .sidebar-logo-img {
@@ -140,6 +128,7 @@ body {
     pointer-events: none;
 }
 
+/* ── nav icon ── */
 .nav-icon {
     width: 18px;
     text-align: center;
@@ -156,6 +145,7 @@ body {
     color: #fff;
 }
 
+/* Active nav icon — full white box */
 .nav-icon-box {
     width: 28px;
     height: 36px;
@@ -171,9 +161,17 @@ body {
     align-self: center;
 }
 
+/* Icon inside the white box is green */
 .nav-item.active .nav-icon-box i {
     color: #22c55e;
     font-size: 15px;
+}
+
+.nav-active-icon {
+    width: 20px;
+    height: 36px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .ms-auto {
@@ -181,7 +179,7 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   SIDEBAR SECTIONS
+   SIDEBAR LABELS & SECTIONS
 ══════════════════════════════════════════ */
 
 .sb-label {
@@ -273,7 +271,7 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   QUICK ACTIONS
+   QUICK ACTIONS — PNG icons
 ══════════════════════════════════════════ */
 
 .sb-quick {
@@ -333,7 +331,7 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   SIDEBAR OVERLAY
+   SIDEBAR OVERLAY (mobile)
 ══════════════════════════════════════════ */
 
 .sidebar-overlay {
@@ -368,9 +366,6 @@ body {
     align-items: center;
     gap: 16px;
     padding: 0 20px;
-    position: sticky;
-    top: 0;
-    z-index: 50;
 }
 
 .hamburger {
@@ -381,7 +376,6 @@ body {
     color: var(--text);
     cursor: pointer;
     padding: 4px;
-    flex-shrink: 0;
 }
 
 .tb-search {
@@ -399,7 +393,6 @@ body {
 .tb-search i {
     color: #9ca3af;
     font-size: 14px;
-    flex-shrink: 0;
 }
 
 .tb-search input {
@@ -410,7 +403,6 @@ body {
     font-family: var(--font);
     color: var(--text);
     width: 100%;
-    min-width: 0;
 }
 
 .tb-right {
@@ -418,26 +410,35 @@ body {
     align-items: center;
     gap: 8px;
     margin-left: auto;
-    flex-shrink: 0;
 }
 
 .tb-icon-btn {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border: 1px solid var(--border);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--white);
+    font-size: 15px;
+    color: var(--text-muted);
     cursor: pointer;
     position: relative;
-    overflow: visible;
-    flex-shrink: 0;
 }
 
 .tb-icon-btn:hover {
     background: #f3f4f6;
+}
+
+.notif-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    position: absolute;
+    top: 6px;
+    right: 6px;
 }
 
 .pos-rel {
@@ -469,7 +470,6 @@ body {
     font-weight: 700;
     color: #fff;
     overflow: hidden;
-    flex-shrink: 0;
 }
 
 .tb-avatar img {
@@ -481,24 +481,6 @@ body {
 .tb-name {
     font-size: 13px;
     font-weight: 600;
-    white-space: nowrap;
-}
-
-/* ── TOPBAR PNG ICONS ── */
-.tb-icon-png {
-    width: 26px;
-    height: 26px;
-    object-fit: contain;
-}
-
-.notif-dot-png {
-    width: 9px;
-    height: 9px;
-    position: absolute;
-    top: -3px;
-    right: -3px;
-    object-fit: contain;
-    z-index: 2;
 }
 
 /* ── MAIN CONTENT ── */
@@ -1099,54 +1081,18 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE
 ══════════════════════════════════════════ */
 
-/* ── 14" Laptop: 1024px – 1279px ── */
 @media (max-width: 1279px) {
-    :root {
-        --sidebar-w: 230px;
-    }
-
     .stat-row {
         grid-template-columns: repeat(3, 1fr);
-    }
-
-    .stat-val {
-        font-size: 24px;
-    }
-
-    .stat-img {
-        width: 52px;
-        height: 52px;
-    }
-
-    .three-col-row {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .main-content {
-        padding: 20px;
     }
 }
 
-/* ── Mini Laptop: 768px – 1023px ── */
 @media (max-width: 1023px) {
-    :root {
-        --sidebar-w: 210px;
-    }
-
     .stat-row {
         grid-template-columns: repeat(3, 1fr);
-    }
-
-    .stat-val {
-        font-size: 22px;
-    }
-
-    .stat-img {
-        width: 46px;
-        height: 46px;
     }
 
     .three-col-row {
@@ -1156,24 +1102,11 @@ body {
     .two-col-row {
         grid-template-columns: 1fr;
     }
-
-    .main-content {
-        padding: 18px;
-    }
-
-    .tb-search {
-        max-width: 260px;
-    }
-
-    .page-title {
-        font-size: 20px;
-    }
 }
 
-/* ── Tablet: 576px – 767px ── */
 @media (max-width: 767px) {
     :root {
-        --sidebar-w: 250px;
+        --sidebar-w: 240px;
     }
 
     .sidebar {
@@ -1195,6 +1128,33 @@ body {
         display: flex !important;
     }
 
+    .three-col-row {
+        grid-template-columns: 1fr;
+    }
+
+    .two-col-row {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .main-content {
+        padding: 16px;
+    }
+
+    .topbar {
+        padding: 0 12px;
+        gap: 10px;
+    }
+
+    .tb-search {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 575px) {
     .stat-row {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1208,101 +1168,12 @@ body {
         height: 44px;
     }
 
-    .three-col-row {
-        grid-template-columns: 1fr;
-    }
-
-    .two-col-row {
-        grid-template-columns: 1fr;
-    }
-
-    /* Tasks grid inside card — single column */
-    .tasks-inner-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .main-content {
-        padding: 16px;
-    }
-
-    .topbar {
-        padding: 0 14px;
-        gap: 10px;
-    }
-
     .tb-search {
-        max-width: 200px;
-    }
-
-    .page-title {
-        font-size: 18px;
-    }
-}
-
-/* ── Mobile: < 576px ── */
-@media (max-width: 575px) {
-    :root {
-        --sidebar-w: 240px;
-    }
-
-    .stat-row {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .stat-val {
-        font-size: 18px;
-    }
-
-    .stat-img {
-        width: 38px;
-        height: 38px;
-    }
-
-    .stat-card {
-        padding: 12px 12px;
-    }
-
-    .stat-label {
-        font-size: 11px;
-    }
-
-    .three-col-row {
-        grid-template-columns: 1fr;
-    }
-
-    .two-col-row {
-        grid-template-columns: 1fr;
-    }
-
-    .tasks-inner-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .main-content {
-        padding: 12px 10px 30px;
-    }
-
-    .topbar {
-        padding: 0 10px;
-        gap: 6px;
-    }
-
-    .tb-search {
-        max-width: 130px;
+        max-width: 140px;
     }
 
     .tb-name {
         display: none;
-    }
-
-    .tb-icon-btn {
-        width: 32px;
-        height: 32px;
-    }
-
-    .tb-icon-png {
-        width: 20px;
-        height: 20px;
     }
 
     .cb-head {
@@ -1311,46 +1182,25 @@ body {
     }
 
     .page-title {
-        font-size: 16px;
+        font-size: 18px;
     }
+}
 
-    .page-sub {
-        font-size: 12px;
-    }
+/* ══════════════════════════════════════════
+   TOPBAR PNG ICONS
+══════════════════════════════════════════ */
 
-    .card-box {
-        padding: 12px 10px;
-    }
+.tb-icon-png {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
 
-    .data-table th,
-    .data-table td {
-        padding: 7px 6px;
-        font-size: 11px;
-    }
-
-    .assignee-item span {
-        display: none;
-    }
-
-    .qa-btn {
-        font-size: 12px;
-        padding: 8px 10px;
-    }
-
-    .sb-label {
-        padding: 10px 12px 4px;
-    }
-
-    .cal-ev-circle {
-        width: 32px;
-        height: 32px;
-    }
-
-    .cal-ev-title {
-        font-size: 12px;
-    }
-
-    .cal-ev-sub {
-        font-size: 10px;
-    }
+.notif-dot-png {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    object-fit: contain;
 }
