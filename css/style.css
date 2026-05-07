@@ -1,7 +1,7 @@
 /* ============================================================
    AdvocateGo Dashboard — style.css
    Author  : Md. Sakib Chowdhury
-   Version : 1.1.0  (PNG icons update)
+   Version : 1.3.0
    ============================================================ */
 
 *,
@@ -62,6 +62,7 @@ body {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
+    overflow: visible;
 }
 
 .sidebar-logo {
@@ -81,6 +82,7 @@ body {
 .sidebar-nav {
     padding: 10px 10px 0;
     flex-shrink: 0;
+    overflow: visible;
 }
 
 .nav-item {
@@ -95,6 +97,7 @@ body {
     font-weight: 600;
     transition: background .15s, color .15s;
     margin-bottom: 1px;
+    position: relative;
 }
 
 .nav-item:hover {
@@ -106,6 +109,22 @@ body {
     background: var(--green);
     color: #fff;
     font-weight: 700;
+    position: relative;
+    overflow: visible;
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+    width: 80%;
+    height: 20px;
+    background: rgba(34, 197, 94, 0.5);
+    filter: blur(14px);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
 }
 
 /* ── nav icon ── */
@@ -117,10 +136,27 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
 
 .nav-item.active .nav-icon {
     color: #fff;
+}
+
+/* Active nav icon white box with shadow */
+.nav-icon-box {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 1;
 }
 
 .nav-active-icon {
@@ -265,27 +301,25 @@ body {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    background: transparent !important;
 }
 
 .qa-green {
-    background: var(--green);
+    background: transparent !important;
 }
 
 .qa-teal {
-    background: #06b6d4;
+    background: transparent !important;
 }
 
 .qa-blue {
-    background: var(--blue);
+    background: transparent !important;
 }
 
-/* PNG icon inside quick action button */
 .qa-icon-img {
-    width: 16px;
-    height: 16px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
-    /* Force white so it shows on coloured background */
-    filter: brightness(0) invert(1);
 }
 
 /* ══════════════════════════════════════════
@@ -655,7 +689,6 @@ body {
     color: var(--text-muted);
 }
 
-/* Progress */
 .progress-wrap {
     margin-top: 14px;
     background: #f8faff;
@@ -1040,17 +1073,15 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   RESPONSIVE — 4 breakpoints
+   RESPONSIVE
 ══════════════════════════════════════════ */
 
-/* Tablet landscape (≤1279px) */
 @media (max-width: 1279px) {
     .stat-row {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* Tablet portrait (≤1023px) */
 @media (max-width: 1023px) {
     .stat-row {
         grid-template-columns: repeat(3, 1fr);
@@ -1065,7 +1096,6 @@ body {
     }
 }
 
-/* Mobile large (≤767px) — sidebar becomes drawer */
 @media (max-width: 767px) {
     :root {
         --sidebar-w: 240px;
@@ -1116,7 +1146,6 @@ body {
     }
 }
 
-/* Mobile small (≤575px) */
 @media (max-width: 575px) {
     .stat-row {
         grid-template-columns: repeat(2, 1fr);
