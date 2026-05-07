@@ -1,20 +1,3 @@
-/**
- * AdvocateGo Dashboard — Main JavaScript
- * Author  : Md. Sakib Chowdhury
- * Stack   : Vanilla JavaScript (No jQuery / No Framework)
- * Version : 1.0.0
- *
- * Sections:
- *  1. Dark / Light Mode Toggle  (localStorage persisted)
- *  2. Sidebar Toggle            (mobile responsive)
- *  3. Task Checkbox Handler     (done state + progress bar)
- *  4. Table Search / Filter     (billing & task tables)
- *  5. Priority Filter           (task table dropdown)
- *  6. Week Day Selector         (calendar)
- *  7. Active Nav Highlight
- *  8. Init
- */
-
 "use strict";
 
 /* ── 1. DARK / LIGHT MODE ──────────────────────────────────── */
@@ -42,7 +25,6 @@ const ThemeManager = (() => {
             );
         }
 
-        /* SVG donut text colour */
         const donutText = document.getElementById("donutPct");
         if (donutText) {
             donutText.setAttribute("fill", theme === DARK ? "#e2e8f0" : "#1a1a2e");
@@ -90,12 +72,10 @@ const SidebarManager = (() => {
         hamburger?.addEventListener("click", toggle);
         overlay?.addEventListener("click", close);
 
-        /* Close on ESC */
         document.addEventListener("keydown", (e) => {
             if (e.key === "Escape") close();
         });
 
-        /* Close on resize to desktop */
         window.addEventListener("resize", () => {
             if (window.innerWidth > 991) close();
         });
@@ -106,22 +86,16 @@ const SidebarManager = (() => {
 
 
 /* ── 3. TASK CHECKBOX + PROGRESS ───────────────────────────── */
+/* FIX: .task-item__cb → .task-cb (HTML-এর actual class) */
 const TaskManager = (() => {
-    const TASKS_WRAPPER = "tasksDueList";
-    const PROGRESS_TEXT = "progressText";
-    const PROGRESS_FILL = "progressFill";
-
     function updateProgress() {
-        const wrapper = document.getElementById(TASKS_WRAPPER);
-        if (!wrapper) return;
-
-        const checkboxes = wrapper.querySelectorAll(".task-item__cb");
+        const checkboxes = document.querySelectorAll(".task-cb");
         const total = checkboxes.length;
         const done = Array.from(checkboxes).filter(cb => cb.checked).length;
         const pct = total > 0 ? Math.round((done / total) * 100) : 0;
 
-        const textEl = document.getElementById(PROGRESS_TEXT);
-        const fillEl = document.getElementById(PROGRESS_FILL);
+        const textEl = document.getElementById("pc1");
+        const fillEl = document.getElementById("pf1");
 
         if (textEl) textEl.textContent = `${done} of ${total} tasks completed`;
         if (fillEl) fillEl.style.width = `${pct}%`;
@@ -134,18 +108,14 @@ const TaskManager = (() => {
     }
 
     function init() {
-        /* Handle all task checkboxes (both panels) */
-        document.querySelectorAll(".task-item__cb").forEach(cb => {
-            /* Sync initial state */
+        document.querySelectorAll(".task-cb").forEach(cb => {
             syncDoneClass(cb);
-
             cb.addEventListener("change", () => {
                 syncDoneClass(cb);
                 updateProgress();
             });
         });
 
-        /* Initial progress render */
         updateProgress();
     }
 
@@ -155,12 +125,6 @@ const TaskManager = (() => {
 
 /* ── 4. TABLE SEARCH / FILTER ──────────────────────────────── */
 const TableFilter = (() => {
-    /**
-     * Attach live search to a table.
-     * @param {string} inputId   — id of <input> search field
-     * @param {string} tableId   — id of <table>
-     * @param {number[]} cols    — column indexes to search (0-based), omit = all
-     */
     function attach(inputId, tableId, cols = []) {
         const input = document.getElementById(inputId);
         const table = document.getElementById(tableId);
@@ -184,7 +148,6 @@ const TableFilter = (() => {
                 if (match) visible++;
             });
 
-            /* Show / hide no-results row */
             let noResultRow = table.querySelector("tr.no-results");
             if (!visible && query) {
                 if (!noResultRow) {
@@ -192,7 +155,7 @@ const TableFilter = (() => {
                     noResultRow = document.createElement("tr");
                     noResultRow.className = "no-results";
                     noResultRow.innerHTML =
-                        `<td colspan="${colspan}">No results for "<strong>${query}</strong>"</td>`;
+                        `<td colspan="${colspan}" style="text-align:center;color:#6b7280;padding:12px;">No results for "<strong>${query}</strong>"</td>`;
                     table.querySelector("tbody").appendChild(noResultRow);
                 } else {
                     noResultRow.style.display = "";
@@ -206,8 +169,9 @@ const TableFilter = (() => {
     }
 
     function init() {
-        attach("billingSearch", "billingTable", [1, 3]);   /* NAME + STATUS */
-        attach("taskSearch", "taskTable", [1, 2, 4]); /* TITLE + CLIENT + PRIORITY */
+        attach("billingSearch", "billingTable", [1, 3]);
+        /* FIX: taskTable → todoTable (HTML-এর actual id) */
+        attach("taskSearch", "todoTable", [0, 1, 3]);
     }
 
     return { init };
@@ -217,18 +181,18 @@ const TableFilter = (() => {
 /* ── 5. PRIORITY FILTER ────────────────────────────────────── */
 const PriorityFilter = (() => {
     function init() {
-        const select = document.getElementById("priorityFilter");
+        const select = document.getElementById("taskPriorityFilter");
         if (!select) return;
 
         select.addEventListener("change", () => {
             const val = select.value.toLowerCase();
-            const rows = document.querySelectorAll("#taskTable tbody tr");
+            const rows = document.querySelectorAll("#todoTable tbody tr");
 
             rows.forEach(row => {
                 if (row.classList.contains("no-results")) return;
                 if (!val) { row.style.display = ""; return; }
 
-                const priorityCell = row.querySelectorAll("td")[4];
+                const priorityCell = row.querySelectorAll("td")[3];
                 const match = priorityCell?.textContent.toLowerCase().includes(val);
                 row.style.display = match ? "" : "none";
             });
@@ -240,14 +204,16 @@ const PriorityFilter = (() => {
 
 
 /* ── 6. WEEK DAY SELECTOR ──────────────────────────────────── */
+/* FIX: global selectDay() function যোগ করা হয়েছে — HTML-এর onclick="selectDay(this)" কাজ করবে */
+window.selectDay = function (el) {
+    document.querySelectorAll(".wd").forEach(d => d.classList.remove("wd-active"));
+    el.classList.add("wd-active");
+};
+
 const CalendarManager = (() => {
     function init() {
-        const days = document.querySelectorAll(".week-day");
-        days.forEach(day => {
-            day.addEventListener("click", () => {
-                days.forEach(d => d.classList.remove("is-active"));
-                day.classList.add("is-active");
-            });
+        document.querySelectorAll(".wd").forEach(day => {
+            day.addEventListener("click", () => window.selectDay(day));
         });
     }
 
@@ -258,11 +224,11 @@ const CalendarManager = (() => {
 /* ── 7. ACTIVE NAV HIGHLIGHT ───────────────────────────────── */
 const NavManager = (() => {
     function init() {
-        const items = document.querySelectorAll(".sidebar__nav-item");
+        const items = document.querySelectorAll(".nav-item");
         items.forEach(item => {
             item.addEventListener("click", () => {
-                items.forEach(n => n.classList.remove("is-active"));
-                item.classList.add("is-active");
+                items.forEach(n => n.classList.remove("active"));
+                item.classList.add("active");
                 SidebarManager.close();
             });
         });
