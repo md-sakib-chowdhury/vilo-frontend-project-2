@@ -413,18 +413,18 @@ body {
 }
 
 .tb-icon-btn {
-    width: 34px;
-    height: 34px;
+    width: 42px;
+    height: 42px;
     border: 1px solid var(--border);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--white);
-    font-size: 15px;
     color: var(--text-muted);
     cursor: pointer;
     position: relative;
+    overflow: visible;
 }
 
 .tb-icon-btn:hover {
@@ -443,6 +443,7 @@ body {
 
 .pos-rel {
     position: relative;
+    overflow: visible;
 }
 
 .tb-user {
@@ -1191,16 +1192,16 @@ body {
 ══════════════════════════════════════════ */
 
 .tb-icon-png {
-    width: 22px;
-    height: 22px;
+    width: 30px;
+    height: 30px;
     object-fit: contain;
 }
 
 .notif-dot-png {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: -4px;
+    right: -4px;
     object-fit: contain;
 }
